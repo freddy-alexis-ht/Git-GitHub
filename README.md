@@ -141,6 +141,9 @@ As the alias were set in global mode, it affects all repos.
 
 ### Working in the module '02-instalaciones'
 
+---
+***Differences: git diff***
+
 New file: instalaciones.md  
 Add some text.  
 
@@ -155,11 +158,23 @@ But, if `git add 02-instalaciones/instalaciones.md` is applied, when running `gi
 
 `git diff --staged 02-instalaciones/instalaciones.md` .. it compares differences even if changes are already added to the stage.
 
-Doing this in the Console can be confusing. It's better to use the editor.  
+Doing this in the Console can be confusing. It's better to use an IDE.  
 
+---
 
+***Update commit messages***
 
+Commit with a mistaken message:  
+`git commit -m "incorrect message`  
 
+Rewriting the commit message:  
+`git commit --amend -m "correct message`  
 
+It can be checked with:
+`git log`
 
+***Rever commit***
+
+If after commit we feel we'd want to add some other changes to that previous commit:  
+`git reset --soft HEAD^` .. 'HEAD^' equivale a 'HEAD^1' es uno antes del HEAD (last one). If it's need to go to other previous commits: HEAD^2, HEAD^3
 
