@@ -1,2 +1,2 @@
 # Notes
-This is a test repo.
+This is the initial project repo.

@@ -70,10 +70,38 @@ To edit the configuration:
 `git add .`  
 `git commit -m "Project created, module '01-bases' created and initial commands"`  
 
+- If `git init` is executed again, it doesn't delete the existing commits.
 
+## 2. Other commands
 
+***Recovering a previous commit***
 
+`git checkout -- .` .. reconstruct the project as it is in the last commit.  
+Remember that it only cares about the tracked files.  
+If a file was created, this command wouldn't erase it, because it would be in 'untracked' state.
 
+***Change branch name: main -> master***
+
+`git branch` .. display the branches.
+It's better to work in other branches, not in 'master'.
+
+`git branch -m master main` .. change the branch name from 'master' to 'main'.
+This applies only to the current repo.
+
+`git config --global init.defaulBranch main`  
+This applies to all repos because it's the global config.  
+
+***Undo the 'git add' command***
+
+`git add README.md` .. now the file is added to the stage by git (ready to be tracked). 
+`git reset README.md` .. the file is not staged (untracked).
+
+`git add 01-bases/README.md`
+`git commit -m "01-bases/README.md added"`
+
+Make some changes, commit those changes.  
+It only works if the file is already being tracked.
+`git commit -am "01-bases/README.md edited"`
 
 
 
