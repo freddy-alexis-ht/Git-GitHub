@@ -1,4 +1,4 @@
-## 1. Project Configuration
+## 1. PROJECT CONFIGURATION AND BASIC COMMANDS
 
 For this course it's necessary to have git version 2.10+
 
@@ -62,17 +62,12 @@ To edit the configuration:
 
 ![](images/pry_01-bases_added.png)
 
-`git add .` .. to add all the files.
-`git reset <file>` .. to unstage the file (won't be added)
-
 **Run the commands**
 `git status`
 `git add .`  
 `git commit -m "Project created, module '01-bases' created and initial commands"`  
 
 - If `git init` is executed again, it doesn't delete the existing commits.
-
-## 2. Other commands
 
 ***Recovering a previous commit***
 
@@ -118,6 +113,33 @@ Author .. user configuration.
 If a new folder is just created, it won't appear on 'git status'.  
 Only if it has a file it will be tracked.  
 For these cases, git recommends adding the file `.gitkeep`, it has no content, but it's better than adding a random file.
+
+`git add css/` .. all the files and directories inside 'css/'.
+
+***Alias***
+
+`git status` .. displays a lot of information  .
+`git status --short` .. displays the info only in one line.
+
+This alias says: 'git s' is equivalent to 'git status --short'  
+`git config --global alias.s "status --short"`  
+
+`git config --global --list` .. to check the global configuration.
+`git config --global --edit` .. to edit the global configuration.
+
+![](images/alias.png)
+
+- In the video, the author says he uses this:
+> git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+![](images/alias-2.png)
+
+As the alias were set in global mode, it affects all repos.
+
+
+## 2. ADVANCED COMMANDS
+
+
 
 
 
