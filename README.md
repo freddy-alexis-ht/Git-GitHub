@@ -95,13 +95,30 @@ This applies to all repos because it's the global config.
 
 `git add README.md` .. now the file is added to the stage by git (ready to be tracked). 
 `git reset README.md` .. the file is not staged (untracked).
+`git rm --cached README.md` .. another option.
 
 `git add 01-bases/README.md`
 `git commit -m "01-bases/README.md added"`
 
 Make some changes, commit those changes.  
-It only works if the file is already being tracked.
+It only works if the file or files are already being tracked.
 `git commit -am "01-bases/README.md edited"`
+
+`git log`  
+Hash .. commit unique identifier.  
+HEAD -> main .. the last commit was made in branch 'main'.  
+Author .. user configuration.
+
+***Adding files to the stage***
+
+`git add *.html` .. all the .html files.
+`git add *.js` .. if they are inside a folder, they won't be found.
+`git add js/*.js` .. now it does work.
+
+If a new folder is just created, it won't appear on 'git status'.  
+Only if it has a file it will be tracked.  
+For these cases, git recommends adding the file `.gitkeep`, it has no content, but it's better than adding a random file.
+
 
 
 
