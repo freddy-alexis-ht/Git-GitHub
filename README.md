@@ -139,6 +139,25 @@ As the alias were set in global mode, it affects all repos.
 
 ## 2. ADVANCED COMMANDS
 
+### Working in the module '02-instalaciones'
+
+New file: instalaciones.md  
+Add some text.  
+
+`git add . -> git commit -m ".."`  
+
+Make some changes in instalaciones.md  
+
+`git diff` .. if there's only one file, there's no need in specifying a file.
+`git diff 02-instalaciones/instalaciones.md` .. a file in specific
+
+But, if `git add 02-instalaciones/instalaciones.md` is applied, when running `git diff 02-instalaciones/instalaciones.md` it will do nothing, because those changes are already in the stage.  
+
+`git diff --staged 02-instalaciones/instalaciones.md` .. it compares differences even if changes are already added to the stage.
+
+Doing this in the Console can be confusing. It's better to use the editor.  
+
+
 
 
 
