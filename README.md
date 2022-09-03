@@ -449,8 +449,99 @@ The first one is for directories, and the next one for files.
 
 `git status` .. it only displays the .gitignore.  
 
+---
+---
 
+## 3. BRANCHES & MERGE
 
+***a) Merge types***
+
+- Fast-forward: There are no changes in the master-branch, so the changes in the other-branch can be merged easily. Each commit will be part of the master-branch, just like if the other-branch wouldn't have been created.  
+- Automatic merge: There were changes in the master-branch, but there are no conflicts with what's been changed in the other-branch.
+- Manual merge: In both branches the same code was modified, git will ask us to solve it manually. After the problem is solved, git creates the 'merge-commit' and we can continue.
+
+![fast-forward-merge](images/fast-forward-merge.png)
+![merge-conflict](images/merge-conflict.png)
+
+---
+
+### 3.1 Project '04-merge' - Fast-forward merge
+
+***a) Project***
+
+- The project '04-merge' is included in the course.  
+
+![pry-04-merge](images/pry-04-merge.png)
+
+- It already has a .git, which means it already has a history.
+
+![merge-1](images/merge-1.png)
+
+---
+
+***b) Working with the branch***
+
+While being in 'master' create the file 'villanos.md', add some code.  
+In the image, the first status displays villanos.md and a directory that I included in the .gitignore.  
+I added that in the .gitignore. That's why now the .gitignore is displayed with the 'M' of 'modified'.  
+
+`git branch br-villanos` .. to create a branch.  
+`git branch` .. to see the current branch and the rest of them.  
+`git checkout br-villanos` .. to jump to another branch.  
+
+In the logs, we can see that the last commit for both branches is the 'Agregando el gitignore'.  
+
+![merge-2](images/merge-2.png)
+
+Being in the br-villanos branch, run these commands:  
+`git add .`  
+`git commit -m "..."`  
+`git log`
+
+In the logs we can see that 'master' is 1 commit behind 'br-villanos'  
+
+![merge-3](images/merge-3.png)
+
+Still in 'br-villanos' edit the 'villanos-md' file.
+`git commit -am "..."`  
+`git log`
+
+In the logs we can see that 'master' is 2 commits behind 'br-villanos'
+
+![merge-4](images/merge-4.png)
+
+---
+
+***c) Merging***
+
+If we go back to 'master' the 'villanos.md' file won't be there.  
+Maybe that file is ready to pass to the 'master', this is how it's done.  
+
+> To merge changes in branch-A to branch-B, we have to in branch-B.
+
+So, to merge changes from 'villanos.md' to 'master', we have to be in 'master'.  
+
+`git checkout master`  
+`git merge br-villanos`  
+`git log`  
+
+In the image, it says that it was 'Fast-forward' merge, meaning that there was no conflict.  
+We also can see that both branches are on the same level now.  
+
+![merge-5](images/merge-5.png)
+
+After a successful merge, the 'br-villanos' branch should be deleted.  
+
+`git branch -d br-villanos`  
+
+If there are some changes that haven't been committed, git will warn us about that.  
+If we don't mind about those changes, to force the deletion we can use: 
+
+`git branch -d br-villanos -f`
+
+---
+
+### 3.2 Project '04-merge' - Automatic merge
 
 
 
