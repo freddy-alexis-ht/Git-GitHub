@@ -1,0 +1,6 @@
+# directories
+dont-track-this/
+
+# files
+# *.md
+dont-track-me.md

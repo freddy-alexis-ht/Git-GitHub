@@ -438,7 +438,16 @@ Differences:
 
 ### 2.5 Ignoring files
 
+Create some files that we don't want to be tracked.  
+`git status`  
+![ignore-1](images/ignore-1.png)
 
+Create the file '.gitignore'. It should be tracked, because we might add some more files we don't want to track.  
+The first one is for directories, and the next one for files.  
+> dont-track-this/  
+> dont-track-me.md
+
+`git status` .. it only displays the .gitignore.  
 
 
 
