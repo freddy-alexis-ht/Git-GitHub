@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/01-bases/01-bases.iml" filepath="$PROJECT_DIR$/01-bases/01-bases.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-instalaciones/02-instalaciones.iml" filepath="$PROJECT_DIR$/02-instalaciones/02-instalaciones.iml" />
-      <module fileurl="file://$PROJECT_DIR$/03-herores/03-herores.iml" filepath="$PROJECT_DIR$/03-herores/03-herores.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03-heroes/03-heroes.iml" filepath="$PROJECT_DIR$/03-heroes/03-heroes.iml" />
       <module fileurl="file://$PROJECT_DIR$/pry-git.iml" filepath="$PROJECT_DIR$/pry-git.iml" />
     </modules>
   </component>
