@@ -139,7 +139,7 @@ As the alias were set in global mode, it affects all repos.
 
 ## 2. ADVANCED COMMANDS
 
-### Working in the module '02-instalaciones'
+### 2.1 Module '02-instalaciones' - diff and amend
 
 ---
 ***a) Differences: git diff***
@@ -187,8 +187,9 @@ Then add the changes with 'git add .' and write the correct commit.
 `git commit -m "another correct message`
 
 ---
+### 2.2 Module '03-heroes' - Time travel, reset and reflog
 
-***d) Working with a project***
+***a) Working with the project***
 
 ![module-03-heroes](images/module-03-heroes.png)
 
@@ -230,9 +231,7 @@ Last commit of this part.
 
 ---
 
-***e) Modificaciones***
-
-**Using: reset --soft (1 position)**
+***b) Using: reset --soft (1 position)***
 
 In heroes.md 'Robin' should've been added too.  
 So, reverting the last commit (going back 1 position):  
@@ -258,7 +257,7 @@ Check with: `git log`
 
 ---
 
-**Using: reset --mixed --hard**
+***c) Using: reset --mixed --hard***
 
 - --soft: keep the files and the stages (the 'git add' command, meaning: they are in green)
 - --mixed: keep the files, but unstage changes (it doesn't only revert 'commit' but 'add' also)
@@ -283,7 +282,7 @@ Note that even when the commit related to 'historia' folder has been reset, it's
 
 ---
 
-**Reverting the reset**
+***d) Reverting the reset***
 
 We realized that the commits were ok, and we want to undo all the resets (soft, mixed, hard), we want to go back to were 'Linterna verde' and 'Robin' were added (hash: ea4bf49).    
 Each 'hash' represents modifications in the history of logs.
@@ -306,5 +305,66 @@ Each 'hash' represents modifications in the history of logs.
 
 - These operations shouldn't be done freely because they might be dangerous.  
 - It's better to create a branch, work there, and once we're sure our changes are correct, merge our branch with the 'master' one.  
+
+
+### 2.3 Module '03-heroes' - change name and delete files with git
+
+***a) Renaming***
+
+In '03-heroes/src/' create the file 'destroy.md' and add some text.  
+- This file contains info to destroy the world.  
+`git add 03-heroes/src/destroy.md`
+`git commit -m "destroy.md added"`  
+`git log`  
+
+But, what about if it was a mistake, the file should be called 'save.md' and it should contain info to save the world.  
+- To restore this, we could use the 'reset' commands.  
+- Notice that if 'reset' is applied, then the commit will be reverted, and in future logs the last commit won't be displayed.
+
+
+If I want to keep the commit in the logs, and I want to change the file name and its info:  
+>mv: move, if it moves in the same place it renames the file
+
+`git mv 03-heroes/src/destroy.md 03-heroes/src/save.md`  
+
+The file-name now is 'save.md'. It can be seen with:
+
+`git status`  
+
+![rename](images/rename.png)
+
+We have what we wanted, everything in the logs.
+
+![rename-2](images/rename-2.png)
+
+---
+
+***b) Deleting***
+
+`git rm 03-heroes/src/save.md`  
+When the file is deleted, it's still in the stage (to be committed).  
+- It can be brought back with:  
+  `git reset --hard` .. but it's better to use:  
+  `git checkout -- .`  
+
+![delete](images/delete.png)  
+
+So, we go again:  
+`git rm 03-heroes/src/save.md`  
+`git status`  
+`git commit -m "save.md deleted"`  
+
+![delete-2](images/delete-2.png)  
+
+`git log`    
+We have what we wanted, everything in the logs.
+
+![delete-3](images/delete-3.png)  
+
+
+### 2.4 Module '03-heroes' - change name and delete files without git
+
+
+
 
 
