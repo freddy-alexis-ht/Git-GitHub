@@ -543,5 +543,122 @@ If we don't mind about those changes, to force the deletion we can use:
 
 ### 3.2 Project '04-merge' - Automatic merge
 
+To create a branch and to move to it:  
+`git branch br-villanos`  
+`git checkout br-villanos`  
+
+It can be done in one step:  
+`git checkout -b br-villanos`  
+
+Being in 'br-villanos' branch, in 'villanos.md' add the last line (4.).  
+
+~~~
+## Villanos
+
+1. Lex Luthor
+2. Joker
+3. Flash Reverso
+4. Doomsday
+~~~
+
+`git commit -am "Doomsday added"`
+
+After the commit I add another line to 'villanos.md', it can be seen with 'git status'.  
+
+![automatic-merge-1](images/automatic-merge-1.png)
+
+`git commit -am "Notes added"`
+
+On 'git log' we'll see that 'master' is 2 commits behind.  
+
+Suddenly, we are asked to change something, but as the 'br-villanos' is not ready to be merged and the request is urgent, the changes are made in 'master'.  
+
+`git checkout master`  
+
+In 'heroes.md' delete 'Daredevil'.  
+
+`git commit -am "Daredevil deleted"`
+
+Now, we know that 'master' has its own commits in its timeline.  
+Also, 'br-villanos' has its own commits in its timeline.  
+
+> In this part I'll use this alias:
+> git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+`git lg`  
+
+![automatic-merge-2](images/automatic-merge-2.png)
+
+It's time to merge both branches.  
+
+`git merge br-villanos`  
+
+It will display:
+
+![automatic-merge-3](images/automatic-merge-3.png)
+
+- In the editor: Click 'A' to edit -> change the message to "Merge 'master with branch 'br-villanos'" -> Esc -> :wq!
+
+![automatic-merge-4](images/automatic-merge-4.png)  
+![automatic-merge-5](images/automatic-merge-5.png)  
+
+- If the modified files are text, and if they are modified in different places, then git will use this strategy ('ort', formerly known as 'recursive')  
+- But if the files are binaries, like images, even if they are not modified in the same place, git will consider that there is conflict.  
+
+**To avoid confusions**  
+
+1. The three commits are merged:
+  - So, Daredevil will be deleted and Doomsday and notes will be added. This is how the 'master' will end.
+  - Don't confuse, the 'br-villanos' branch will continue with its 2 commits, Doomsday and notes are added, and Daredevil will be there, because it wasn't affected in this timeline.  
+~~~
+    · 6f850f5 - (4 minutes ago) Merge 'master with branch 'br-villanos' - Freddy2 (HEAD -> master)  
+    |\  
+    | · 6ed8522 - (18 minutes ago) Notes added - Freddy2 (br-villanos)  
+    | · e0e9975 - (22 minutes ago) Doomsday added - Freddy2  
+    · | 238ae61 - (14 minutes ago) Daredevil deleted - Freddy2  
+    |/  
+    · 2cbcce8 - (74 minutes ago) Flash reverso added - Freddy2  
+~~~
+
+---
+
+### 3.3 Project '04-merge' - Manual merge (conflicts)  
+
+Both branches modified the same file.
+
+`git checkout -b br-conflicto`  
+Edit 'misiones.md'.  
+`git commit -am "misiones.md updated"`  
+
+`git checkout master`  
+Edit 'misiones.md'.  
+`git commit -am "misiones.md updated in master"`  
+
+`git merge br-conflicto`  
+> Auto-merging misiones.md  
+> CONFLICT (content): Merge conflict in misiones.md  
+> Automatic merge failed; fix conflicts and then commit the result.  
+
+- The files that didn't have conflicts will be merged.  
+- After fixing the conflict, another commit should be run.
+
+IntelliJ display the conflict like this:  
+- From line 1 to 4 both have the same content.
+- HEAD refers to the last commit, in this case it was in 'master'.  
+  - Between HEAD and ===, are displayed the differences.
+- br-conflicto is the other branch.  
+  - Between === and br-conflito, are displayed the differences.
+
+![conflict-1](images/conflict-1.png)
+
+Read the conflict and solve it manually. Then commit.  
+
+`git commit -am "Conflict solved"`  
+
+![conflict-2](images/conflict-2.png)
+
+Delete the other branch.  
+
+
 
 
