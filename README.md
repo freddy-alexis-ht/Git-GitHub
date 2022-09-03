@@ -173,8 +173,16 @@ Rewriting the commit message:
 It can be checked with:
 `git log`
 
-***Rever commit***
+---
+
+***Revert commit***
 
 If after commit we feel we'd want to add some other changes to that previous commit:  
-`git reset --soft HEAD^` .. 'HEAD^' equivale a 'HEAD^1' es uno antes del HEAD (last one). If it's need to go to other previous commits: HEAD^2, HEAD^3
+`git reset --soft HEAD^` .. 'HEAD^' is equivalent to 'HEAD^1', es un commit antes del HEAD (last one).  
+If it's need to go to other previous commits: HEAD^2, HEAD^3, but it's not recommendable to go to far.
+
+Check the logs wit 'git log'.  
+
+Then add the changes with 'git add .' and write the correct commit.  
+`git commit -m "another correct message`
 
