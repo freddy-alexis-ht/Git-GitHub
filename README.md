@@ -2,7 +2,9 @@
 
 For this course it's necessary to have git version 2.10+
 
-### Local-repo and Remote-repo
+---
+
+### 1.1 Local-repo and Remote-repo
 
 - Remote-repo creation, name: Git-GitHub
   - Add a README file
@@ -21,13 +23,17 @@ So, previous of 'git init', we can configure it with:
 If the branch is already created, the name can be changed with:  
 `git branch -m <name>`
 
-### Project creation
+---
+
+### 1.2 Project creation
 
 - Open IntelliJ -> New project -> Java: 1.8
   - Project name: pry-git
   - Project location: ..../pry-git
 
-### Initial Commands
+---
+
+### 1.3 Initial Commands
 
 `git --version`
 
@@ -54,28 +60,36 @@ To edit the configuration:
 
 `:wq!` .. w:write -> q:quit -> !:immediately
 
+---
 
-### Course project
+### 1.4 Course project
 
 - The project '01-bases' is given in the course:
 - New module -> Name: 01-bases -> paste the files here
 
 ![pry_01-bases_added](images/pry_01-bases_added.png)
 
-**Run the commands**
-`git status`
+---
+
+***a)Run the commands***  
+
+`git status`  
 `git add .`  
 `git commit -m "Project created, module '01-bases' created and initial commands"`
 
 - If `git init` is executed again, it doesn't delete the existing commits.
 
-***Recovering a previous commit***
+--- 
+
+***b) Recovering a previous commit***
 
 `git checkout -- .` .. reconstruct the project as it is in the last commit.  
 Remember that it only cares about the tracked files.  
 If a file was created, this command wouldn't erase it, because it would be in 'untracked' state.
 
-***Change branch name: main -> master***
+---
+
+***c) Change branch name: main -> master***
 
 `git branch` .. display the branches.
 It's better to work in other branches, not in 'master'.
@@ -86,7 +100,9 @@ This applies only to the current repo.
 `git config --global init.defaulBranch main`  
 This applies to all repos because it's the global config.
 
-***Undo the 'git add' command***
+---
+
+***d) Undo the 'git add' command***
 
 `git add README.md` .. now the file is added to the stage by git (ready to be tracked).
 `git reset README.md` .. the file is not staged (untracked).
@@ -104,7 +120,9 @@ Hash .. commit unique identifier.
 HEAD -> main .. the last commit was made in branch 'main'.  
 Author .. user configuration.
 
-***Adding files to the stage***
+---
+
+***e) Adding files to the stage***
 
 `git add *.html` .. all the .html files.
 `git add *.js` .. if they are inside a folder, they won't be found.
@@ -116,7 +134,9 @@ For these cases, git recommends adding the file `.gitkeep`, it has no content, b
 
 `git add css/` .. all the files and directories inside 'css/'.
 
-***Alias***
+---
+
+***f) Alias***
 
 `git status` .. displays a lot of information  .
 `git status --short` .. displays the info only in one line.
@@ -136,6 +156,8 @@ This alias says: 'git s' is equivalent to 'git status --short'
 
 As the alias were set in global mode, it affects all repos.
 
+---
+---
 
 ## 2. ADVANCED COMMANDS
 
@@ -298,38 +320,39 @@ Each 'hash' represents modifications in the history of logs.
 
 
 - Going back to the hash: ea4bf49  
-`git reset --hard ea4bf49`  
-`git log`  
+  `git reset --hard ea4bf49`  
+  `git log`
 
 ![modification-6](images/modification-6.png)
 
-- These operations shouldn't be done freely because they might be dangerous.  
-- It's better to create a branch, work there, and once we're sure our changes are correct, merge our branch with the 'master' one.  
+- These operations shouldn't be done freely because they might be dangerous.
+- It's better to create a branch, work there, and once we're sure our changes are correct, merge our branch with the 'master' one.
 
+---
 
 ### 2.3 Module '03-heroes' - change name and delete files with git
 
 ***a) Renaming***
 
-In '03-heroes/src/' create the file 'destroy.md' and add some text.  
+In '03-heroes/src/' create the file 'destroy.md' and add some text.
 - This file contains info to destroy the world.  
-`git add 03-heroes/src/destroy.md`
-`git commit -m "destroy.md added"`  
-`git log`  
+  `git add 03-heroes/src/destroy.md`
+  `git commit -m "destroy.md added"`  
+  `git log`
 
-But, what about if it was a mistake, the file should be called 'save.md' and it should contain info to save the world.  
-- To restore this, we could use the 'reset' commands.  
+But, what about if it was a mistake, the file should be called 'save.md' and it should contain info to save the world.
+- To restore this, we could use the 'reset' commands.
 - Notice that if 'reset' is applied, then the commit will be reverted, and in future logs the last commit won't be displayed.
 
 
-If I want to keep the commit in the logs, and I want to change the file name and its info:  
+If I want to keep the commit in the logs, and I want to change the file name and its info:
 >mv: move, if it moves in the same place it renames the file
 
-`git mv 03-heroes/src/destroy.md 03-heroes/src/save.md`  
+`git mv 03-heroes/src/destroy.md 03-heroes/src/save.md`
 
 The file-name now is 'save.md'. It can be seen with:
 
-`git status`  
+`git status`
 
 ![rename](images/rename.png)
 
@@ -342,27 +365,81 @@ We have what we wanted, everything in the logs.
 ***b) Deleting***
 
 `git rm 03-heroes/src/save.md`  
-When the file is deleted, it's still in the stage (to be committed).  
+When the file is deleted, it's still in the stage (to be committed).
 - It can be brought back with:  
   `git reset --hard` .. but it's better to use:  
-  `git checkout -- .`  
+  `git checkout -- .`
 
-![delete](images/delete.png)  
+![delete](images/delete.png)
 
 So, we go again:  
 `git rm 03-heroes/src/save.md`  
 `git status`  
-`git commit -m "save.md deleted"`  
+`git commit -m "save.md deleted"`
 
-![delete-2](images/delete-2.png)  
+![delete-2](images/delete-2.png)
 
 `git log`    
 We have what we wanted, everything in the logs.
 
-![delete-3](images/delete-3.png)  
+![delete-3](images/delete-3.png)
 
+---
 
 ### 2.4 Module '03-heroes' - change name and delete files without git
+
+***a) Renaming***
+
+We have:
+- historia (directory)
+  - batman.historia.md (file)
+  - superman.historia.md (file)
+
+Those files are inside 'historia', so having 'historia' in their names is repetitive.
+- Right click -> Refactor -> Rename -> superman.md
+
+In the image, git recognizes the action of rename.
+
+![rename-3](images/rename-3.png)
+
+> In the video, it's different, maybe because of the git version.  
+> There, after 'git status' it was like:
+> -  D historia/superman.historia.md
+> - ?? historia/superman.md
+>
+> Meaning that, it consider that the original file was deleted, and a new one was created.
+
+> After executing 'git add .' and 'git status', it was like this:
+> - R historia/superman.historia.md -> historia/superman.md
+>
+> At this point, git recognized that both files are the same, it just was renamed.
+> And that's exactly what git did in my case.
+
+`git commit -m "superman.historia.md renamed to superman.md"`  
+
+If we go back 1 commit with:  
+`git reset --hard db39a6d`  
+We'll see how git sets back the name to 'superman.historia.md'.  
+
+And, executing:  
+`git reflog`
+`git reset --hard 91964ea`  
+We go back to the last commit, when the name was 'superman.md'.  
+
+---
+
+***b) Deleting***  
+
+Differences:
+- Deleting via git: it keeps the file as staged (git add applied).
+- Deleting via IDE (manual): the file is un-staged (has to apply git add).
+
+---
+
+### 2.5 Ignoring files
+
+
+
 
 
 
