@@ -968,5 +968,309 @@ So far I have 4 stashes, let's say I decided to keep only the last one.
 
 ***More info about stash: https://git-scm.com/docs/git-stash***
 
+---
+---
+
+## 6. GIT REBASE - EMERGENCY CHANGES
+
+***Simple Rebase***  
+
+There are two branches: master and feature.  
+The last commit in common of these branches is 'Old Base'.  
+Eventually, 'feature' committed some changes, also 'master' did.  
+However, those commits in 'master' are necessary in 'feature'.  
+In cases like this, 'git rebase' is applied.  
+
+![rebase-1](images/rebase-1.png)
+
+***Interactive Rebase***  
+
+`git rebase -i HEAD~3`  
+It moves the last 3 commits to a Temporal-Area, and later they are put back in the same order.  
+
+4 Use cases:  
+- Order commits.
+- Correct commit messages.
+- Join commits.
+- Split commits.  
+
+---
+
+### 6.1 Normal Rebase - Updating a branch
+
+In this part this project will be used:  
+
+![rebase-2](images/rebase-2.png)
+
+In the image, the last commit in common is 'acea380: Actualización de las misiones'.  
+Then, both branches have 2 commits.  
+The branch 'rama-misiones-completadas' haven't been merged to the 'master'. 
+
+Task: the branch 'rama-misiones-completadas' must have the 2 commits in 'master' as if they were part of 'rama-misiones-completadas'.  
+
+~~~
+--> ace -> 300 -> 158    (master)
+          \  
+           cc5 -> 8e7     (rama-misiones-completadas)
+~~~  
+
+![rebase-3](images/rebase-3.png)
+
+- Change to branch 'rama-misiones-completadas'.  
+`git checkout rama-misiones-completadas`  
+`git rebase master`  
+`git lg`  
+
+Note that the hashes: cc5, 8e7 from 'rama-misiones-completadas' are not in the logs anymore, they've been replaced by other hashes.  
+But, now the branch 'rama-misiones...' has the two commits of 'master'.  
+
+~~~
+                     (rama-misiones-completadas)
+                                 |
+--> ace -> 300 -> 158 -> 141 -> 9ec 
+                   |   
+                (master)
+~~~
+
+![rebase-4](images/rebase-4.png)
+
+The branch 'rama-misiones-completadas' is 2 commits ahead of 'master', and the 'master' has no extra commits. So, when merging it will be a 'fast-forward' merge.  
+Move to 'master' and merge.
+
+`git checkout master`  
+`git merge rama-misiones-completadas`  
+
+![rebase-5](images/rebase-5.png)
+
+The branch 'rama-misiones-completadas' can be deleted.  
+`git branch -d rama-misiones-completadas`  
+
+> This is one way 'rebase' can be used.  
+> However, sometimes is better to use 'merge' in order to solve conflicts.  
+
+---
+
+### 6.2 Rebase Squash - Meld commits
+
+Being in 'master'.  
+There are two files: misiones.md & misiones-completadas.md  
+
+Before:
+~~~
+misiones.md
+# Misiones
+
+1. Acabar con el plan de Lex Luthor
+2. Crear la liga de la justicia
+3. Buscar nuevos miembros para la liga
+5. Investigar los trabajos del Joker
+6. Tratar de investigar que trama el Flash Reverso
+~~~
+
+~~~
+misiones-completadas.md
+# Misiones
+
+* Crear la liga de la justicia
+* Investigar los trabajos del Joker
+~~~
+
+After: Let's say the mission 6 has finished, so it should be in 'misiones-completadas.md'.  
+~~~
+misiones.md
+# Misiones
+
+1. Acabar con el plan de Lex Luthor
+2. Crear la liga de la justicia
+3. Buscar nuevos miembros para la liga
+5. Investigar los trabajos del Joker
+~~~
+
+~~~
+misiones-completadas.md
+# Misiones
+
+* Crear la liga de la justicia
+* Investigar los trabajos del Joker
+* Tratar de investigar que trama el Flash Reverso
+~~~
+
+Run the commands:  
+`git status`  
+`git commit -am "Actualizamos misiones completadas`  
+`git lg`  
+
+![rebase-6](images/rebase-6.png)
+
+As we can see in the image, the last 2 commits are kind of the same. So, they should be only one.  
+Have in mind that, 'rebase' (rename, join, split) should be used when working in local, and only when necessary.  
+
+**Join commits**
+
+Being in 'master'.  
+`git rebase -i HEAD~4`  
+
+In the image, there are a lot of options. Among all of those, the one we care is 'squash'.  
+- pick (p) is to 'use' a commit.  
+- squash (s) is to 'meld' the commit with the previous one.
+
+![rebase-7](images/rebase-7.png)
+
+So, click 'A' (to edit) -> after edit -> Esc -> :wq!  
+
+~~~
+pick 158ba9e Se agrego a la liga: Volcán Negro
+pick 141071a Agregamos el archivo de las misiones completadas
+pick 9ecb331 Actualizamos dos misiones completadas al momento
+squash c731cc5 Actualizamos misiones completadas
+~~~
+
+Then, we'll have:  
+Just: :wq!
+
+![rebase-8](images/rebase-8.png)  
+
+It will display:  
+~~~
+$ git rebase -i HEAD~4
+[detached HEAD 4048dd5] Actualizamos dos misiones completadas al momento
+ Author: Strider <fernando.herrera85@gmail.com>
+ Date: Fri Jun 23 15:44:41 2017 -0600
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+Successfully rebased and updated refs/heads/master.
+~~~
+
+The log initially was:  
+~~~
+$ git lg
+* c731cc5 - (3 seconds ago) Actualizamos misiones completadas - Freddy2 (HEAD -> master)
+* 9ecb331 - (5 years ago) Actualizamos dos misiones completadas al momento - Strider
+* 141071a - (5 years ago) Agregamos el archivo de las misiones completadas - Strider
+~~~
+
+After rebase-squash is:  
+~~~
+$ git lg
+* 4048dd5 - (5 years ago) Actualizamos dos misiones completadas al momento - Strider (HEAD -> master)
+* 141071a - (5 years ago) Agregamos el archivo de las misiones completadas - Strider
+~~~
+
+The last commit (3 seconds ago) meld with the previous one (5 years ago). Check the files.  
+
+**Note**  
+It can be 'p' or 'pick', and 's' or 'squash'.  
+If we had wanted to meld the 3 last commits then it should have been like this:  
+~~~
+pick 158ba9e Se agrego a la liga: Volcán Negro
+p 141071a Agregamos el archivo de las misiones completadas
+s 9ecb331 Actualizamos dos misiones completadas al momento
+s c731cc5 Actualizamos misiones completadas
+~~~
+
+---
+
+### 6.3 Rebase Reword
+
+`git rebase -i HEAD~4`  
+
+Interactive window:
+~~~
+pick 300c014 Misiones nuevas agregadas
+pick 158ba9e Se agrego a la liga: Volcán Negro
+pick 141071a Agregamos el archivo de las misiones completadas
+pick 4048dd5 Actualizamos dos misiones completadas al momento
+
+# Rebase acea380..4048dd5 onto acea380 (4 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+~~~
+
+To change the messages in the last 2 commits 'reword'.  
+
+~~~
+pick 300c014 Misiones nuevas agregadas
+pick 158ba9e Se agrego a la liga: Volcán Negro
+reword 141071a Agregamos el archivo de las misiones completadas
+reword 4048dd5 Actualizamos dos misiones completadas al momento
+~~~
+
+It will take us to another interactive window:  
+
+![reword-1](images/reword-1.png)
+
+This is the message of the last-commit.  
+Change the message from:  
+- Agregamos el archivo de las misiones completadas   
+To:  
+- misiones-completadas.md added   
+Esc -> :wq!  
+
+Then, we go for the other commit message.  
+Change the message from:  
+- Actualizamos dos misiones completadas al momento  
+To:
+- misiones.md updated  
+Esc -> :wq!  
+
+Check the logs:  
+![reword-2](images/reword-2.png)
+
+---
+
+### 6.3 Rebase Edit
+
+Modify the files: README.md, misiones.md, villanos.md.  
+Then, we decide to revert what was done in README.md.  
+`git checkout -- README.md`  
+
+![edit-1](images/edit-1.png)  
+
+Commit the changes in the files.  
+
+![edit-2](images/edit-2.png)  
+
+But, then we decide that each file should have its own commit.  
+- We could reset the last commit.
+- Or, use the interactive rebase.
+
+`git rebase -i HEAD~3`  
+
+Before:  
+~~~
+pick ff800e4 misiones-completadas.md added
+pick 5a9f6f6 misiones.md updated
+pick da8e603 commits
+~~~
+
+After:  
+~~~
+pick ff800e4 misiones-completadas.md added
+pick 5a9f6f6 misiones.md updated
+edit da8e603 commits
+~~~
+Esc -> :wq!  
+Then, we're back.  
+
+![edit-3](images/edit-3.png)
+
+In this point, we're right before we 'add' the changes in the two files.  
+
+`git add villanos.md`  
+`git commit -m "villanos.md updated"`  
+
+`git add misiones.md`  
+`git commit -m "misiones.md updated"`  
+
+![edit-4](images/edit-4.png)
+
+But, it hasn't finished.
+With 'git status' we can notice that we still in 'interactive rebase in progress'.  
+Run:
+`git rebase --continue`  
+There are no more tasks, so this will end the 'interactive rebase'.  
+
+![edit-5](images/edit-5.png)
 
 
