@@ -700,5 +700,273 @@ Tag description:
 ---
 ---
 
+## 5. GIT STASH - TEMPORAL STORAGE
+
+***Stash***  
+It's like a vault where we can put files, even those untracked by git.  
+
+Scenario:
+- We're working on a branch, it can be 'master' or other branch.  
+- We're asked to go to the last commit, but we don't want to commit the changes we have so far.
+- We save those un-committed changes with Stash.
+- We go to the last commit and do what we have to, then we can recovery our progress.  
+
+This action can cause scenarios just like the ones we saw with 'merge'.  
+**Tip:** It's better to save only one stash and attend to it as soon as possible. Having many stashes can be confusing.  
+
+***Rebase***  
+It allows to join/split commits, to rename commits, ...  
+**Tip:** Use it only if we haven't merged our changes to other repo. Also, don't change the History, because maybe they were already merged to a main repo.  
+
+---
+
+### 5.1 Stash   
+
+This project will be used for this part:  
+
+![demo-stash](images/demo-stash.png)
+
+This is the current log:  
+
+![current-history](images/current-history.png)
+
+***a) Stash without conflicts***
+
+In the 'master' branch.  
+The file 'misiones.md' is like this:  
+~~~
+# Misiones
+
+1. Acabar con el plan de Lex Luthor
+2. Crear la liga de la justicia
+3. Buscar nuevos miembros para la liga
+4. Necesitamos más comida
+~~~
+
+Then, we add an extra line (not commit):  
+~~~
+5. Hacer un reconocimiento del terreno
+~~~
+
+Suddenly, we are asked to deploy the 'master' branch to Production.  
+But, there are some changes we are not ready to merge to 'master' (if we weren't working in master, the stash wouldn't be necessary here).  
+  - If we were in branch-1, and we're asked to deploy master, we'd just have to switch to master and deploy it.  
+  - Nevertheless, we have to undo our changes without losing them.  
+
+`git stash`  
+After the command, we can see our changes are not there anymore, we went back to the last commit.  
+When executing 'git status' it'll say 'nothing to commit'.  
+WIP: Work In Progress.  
+
+![stash-1](images/stash-1.png)
+
+`git stash list`  
+> stash@{0}: WIP on master: 5440fe5 Resolviendo conflictos
+
+**Doing some more changes in master**  
+
+The file 'README.md' initially it's like this:  
+~~~
+# Motivo
+
+Este repositorio sirve para probar cosas
+~~~
+
+We change it to this:  
+~~~
+# Notas
+
+Este es un repositorio de los héroes.
+~~~
+
+`git commit -am "README added"`  
+`git lg`  
+
+The stash is there, but git will continue working as if it weren't. It's us who should track stashes, remember that we created them.  
+
+![stash-2](images/stash-2.png)
+
+**Recovering our work from stash**   
+
+Obviously, we know that changes were made in different locations, so there shouldn't be conflict.  
+
+`git stash pop`  
+Recoveries our changes.  
+Keeps the last commit.  
+
+In the image, we can see that 'git stash' displays a similar message as with 'git status'.  
+We also can see that the 'stash@{0}' was dropped. Meaning that, if we'd have had 2 stashes: 'stash@{0}', 'stash@{1}', the first one was dropped, and 'stash@{1}' now is 'stash@{0}' (the only stash that exists).    
+
+![stash-3](images/stash-3.png)
+
+To finish, the commit:  
+`git commit -am "misiones.md updated"`
+
+---
+
+***b) Stash with conflicts: Auto-merging***
+
+**Working in the same file, but not the same line**  
+
+Before:  
+~~~
+# Notas
+
+Este es un repositorio de los héroes.
+~~~
+
+After:  
+~~~
+# Notas
+
+Este es un repositorio de los héroes.
+Texto agregado.
+~~~
+
+`git stash`  
+Now we're in the last commit, and make changes over the same file we have an stash.  
+
+~~~
+# Objetivos
+
+Este es un repositorio de los héroes.
+~~~
+
+`git commit -am "README updated with 'objetivos'"`  
+`git lg`
+
+Popping the stash:  
+As there was no real conflict, this command works the same way as in the previous example.  
+`git stash pop`  
+`git lg`  
+
+![stash-4](images/stash-4.png)
+
+~~~
+# Objetivos
+
+Este es un repositorio de los héroes.
+Texto agregado.
+~~~
+
+---
+
+***c) Stash with conflicts: Auto-merging***
+
+**Working in the same file, and in the same line**  
+
+Before (master-branch):  
+~~~
+# Objetivos
+
+Este es un repositorio de los héroes.
+Texto agregado.
+~~~
+
+After (master-branch):
+~~~
+# Objetivos del repositorio
+
+Este es un repositorio de los héroes.
+Texto agregado.
+~~~
+
+`git stash`  
+The code goes back to this:  
+~~~
+# Objetivos
+
+Este es un repositorio de los héroes.
+Texto agregado.
+~~~
+
+Then (master-branch), a change and a commit:  
+~~~
+# Objetivos del repositorio principal
+
+Este es un repositorio de los héroes.
+~~~
+
+`git commit -am "README updated first line"`  
+`git stash pop`  
+
+There is conflict, the stash is not dropped.  
+
+![stash-5](images/stash-5.png)  
+![stash-6](images/stash-6.png)  
+
+We have to solve the conflict. In the end, we'll keep the file like this.  
+
+~~~
+# Objetivos y Notas
+
+Este es un repositorio de los héroes.
+Texto agregado.
+~~~
+
+`git commit -am "stash conflict solved"`  
+
+Remember the stash wasn't dropped.  
+`git stash list`  
+
+---
+
+### 5.2 Stash Avanzado  
+
+`git stash clear` .. removes all the stashes.  
+- They can be recovered with 'git reflog'.  
+
+***a) Many stashes in the same line***
+
+In 'villanos.md' add a 5th line creating 3 stashes.  
+As we can see, the command 'git stash list' doesn't say much.  
+We only know that 'stash@{0}' is the last stash added.
+
+![stash-7](images/stash-7.png)
+
+This command recoveries a specific stash, but doesn't drop the stash:    
+`git stash apply stash@{2}`
+
+To delete a specific stash (both are the same):  
+`git stash drop`  
+`git stash drop stash@{0}`  
+
+The list of stashes don't display enough info.  
+This commands displays more info:  
+`git stash show stash@{1}`  
+
+~~~
+$ git stash show stash@{1}
+ villanos.md | 1 +
+ 1 file changed, 1 insertion(+)
+~~~
+
+**It's better to assign a name to the stash**
+
+`git stash save "Added Rinox in villanos.md"`
+
+~~~
+$ git stash list
+stash@{0}: On master: Added Rinox in villanos.md
+stash@{1}: WIP on master: afacf02 stash conflict solved
+stash@{2}: WIP on master: afacf02 stash conflict solved
+stash@{3}: WIP on master: afacf02 stash conflict solved
+~~~
+
+**To display more info about the stash**
+
+`git stash list --stat`
+
+![stash-8](images/stash-8.png)  
+
+**Choosing only 1 stash**  
+
+So far I have 4 stashes, let's say I decided to keep only the last one.  
+`git stash pop`  
+`git commit -am "Rinox added to villanos.md"`  
+`git stash clear`  
+
+***More info about stash: https://git-scm.com/docs/git-stash***
+
 
 
