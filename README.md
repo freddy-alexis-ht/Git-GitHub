@@ -659,6 +659,46 @@ Read the conflict and solve it manually. Then commit.
 
 Delete the other branch.  
 
+---
+---
+
+## 4. TAGS
+
+Reference to a specific commit and to the state of a project in a period of time.  
+
+![tag-1](images/tag-1.png)
+
+Considering that in the last commit our app is ready to be uploaded to a production-server.  
+So, it could be marked with a release-tag.  
+It creates a tag exactly in the last commit.  
+
+`git tag my-release`  
+
+![tag-2](images/tag-2.png)
+
+`git tag` .. to see all tags.  
+`git tag -d my-release` .. to delete a tag.  
+
+The tag should be informative, usually with numbers.  
+
+![tag-3](images/tag-3.png)
+
+v1.0.0 -> [major-change].[new-functionality].[bug-fix]
+
+To create a tag in any commit .. copy the hash:  
+
+`git tag -a v0.1.0 2cbcce8 -m "Version: alpha"`  
+
+![tag-4](images/tag-4.png)
+
+Tag description:
+
+`git show v0.1.0`  
+
+![tag-5](images/tag-5.png)
+
+---
+---
 
 
 
