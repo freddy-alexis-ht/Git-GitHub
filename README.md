@@ -1273,4 +1273,130 @@ There are no more tasks, so this will end the 'interactive rebase'.
 
 ![edit-5](images/edit-5.png)
 
+---
+---
+
+## 7. GITHUB: GIT REMOTE, PUSH, PULL
+
+Have in mind that Git doesn't manage access control to the repo.  
+- For this task we have some 'hosted services' like: GitHub, Bitbucket, ...
+- And, managed by ourselves like: Gitosis.  
+  - Gitosis is a tool which provides access control and remote management for hosted Git repositories. It allows for fine-grained management of read and write access over SSH, without requiring that the users have local system accounts on the server.  
+
+Gitosis oficial links:
+- [What is Gitosis?](https://wiki.archlinux.org/title/gitosis#:~:text=Gitosis%20is%20a%20tool%20which,system%20accounts%20on%20the%20server.)
+- [Instal and configure](https://github.com/res0nat0r/gitosis)
+
+Useful link:
+- [Save user and pass of GitHub](https://docs.github.com/es/get-started/getting-started-with-git/caching-your-github-credentials-in-git#platform-windows)
+
+---
+
+### 7.1 GitHub - Push
+
+'origin' is the name of the repo, it's a convention.  
+`git remote add origin [URL]`  
+
+99% of times the 'fetch' and 'push' will be the same repos (URL). 
+- 'fetch' is the place from where we get data.
+- 'push' is the place where we send data.  
+Here we see that the word/name 'origin' is associated to that URL.  
+
+`git remote -v`  
+~~~
+origin  https://github.com/freddy-alexis-ht/Git-GitHub.git (fetch)
+origin  https://github.com/freddy-alexis-ht/Git-GitHub.git (push)
+~~~
+
+`git push -u origin master`  
+'origin' is the name of te remote repo.  
+'master' is the local branch we want to push.  
+'-u' sets 'master' by default, so in the next time it will be enough 'git push'.  
+
+---
+
+### 7.2 New remote repo
+
+***Local repo***
+
+![remote-1](images/remote-1.png)  
+
+***Remote repo***
+
+GitHub -> New repo -> Name: git-course -> Public
+Copy the URL: https://github.com/freddy-alexis-ht/git-course.git  
+
+On GitBash, run the commands:  
+`git remote add origin [URL]`  
+`git push -u origin master`  
+
+![remote-2](images/remote-2.png)  
+
+---
+
+### 7.3 Pushing tags from our local-repo
+
+***a) Tags***
+
+In the remote-repo interface we'll see '0 tags'.  
+But, in the local-repo there are tags.  
+~~~
+$ git tag
+v0.1.0
+v1.0.0
+v2.0.0
+~~~
+
+Manually we have to push them.  
+`git push --tags`
+
+![remote-3](images/remote-3.png)  
+
+Refresh the remote-repo. Click in it.   
+This is the command that was used to create the first tag.    
+`git tag -a v2.0.0 c3e22b9 -m "Version 2.0.0 Deadshot"`  
+
+In the image we can see the date, the hash (commit), options to download.
+A tag is useful because there is a URL that can take us to it:
+- https://github.com/freddy-alexis-ht/git-course/releases/tag/v2.0.0
+
+![remote-4](images/remote-4.png)  
+
+It's possible to download clicking in 'zip'.
+- Downloading we'll get the project without the .git (the History won't be downloaded).  
+- Cloning the repo, we'll get .git too.  
+
+Clicking in the hash (c3e22b9) will take us to the image.  
+It shows the differences: before commit / after commit.  
+
+![remote-5](images/remote-5.png)  
+
+If the mouse is over a line, a blue + appears. Click in it, we'll be able to leave a comment.  
+Writing ':' will display emojis.  
+
+***b) Releases***
+
+In the remote-repo -> right panel there are three options:
+- Releases / 3 tags / Create a new release.
+
+Click in 'Releases'
+- It displays the message "There aren't any releases here".  
+
+In that same place click in 'Tags'.  
+- Click in 'v2.0.0' -> Create release from tag.  
+- Add the description using MarkDown.  
+- It's possible to add binaries (images, ...).
+
+![remote-6](images/remote-6.png)  
+
+After it, now in 'Releases', there will be one.
+
+![remote-7](images/remote-7.png)  
+
+And, in the main-page of the remote-repo, the Release will be there.
+
+![remote-8](images/remote-8.png)  
+
+
+
 
