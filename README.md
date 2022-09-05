@@ -1397,6 +1397,34 @@ And, in the main-page of the remote-repo, the Release will be there.
 
 ![remote-8](images/remote-8.png)  
 
+---
 
+### 7.4 Pull the last changes of the remote-repo
 
+It's possible to edit a file in GitHub.  
+- README.md -> Edit
+- Commit message ..
+- Commit directly to the 'master' branch.
+- Commit changes
+
+In the local-repo we don't have that edition.  
+As we executed previously the command:  
+`git push -u origin master`  
+
+It's enough to use the command:  
+`git pull`  
+..equivalent to:  
+`git pull origin master`  
+..the 'origin' can be verified with:  
+`git remote -v`
+
+As we can see in the image, it applied the 'fast-forward' because there were no conflicts.  
+
+![pull-1](images/pull-1.png)
+
+-> To check, whether the local-repo is different from the remote-repo:  
+`git remote update`  
+`git status -uno`  
+
+![pull-2](images/pull-2.png)
 
