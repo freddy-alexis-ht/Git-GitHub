@@ -1428,3 +1428,64 @@ As we can see in the image, it applied the 'fast-forward' because there were no 
 
 ![pull-2](images/pull-2.png)
 
+---
+
+### 7.5 Cloning a remote-repo
+
+Delete the project '09-heroes' .. this is to simulate that we lose our work.  
+There's no problem, because it's in GitHub.  
+
+GitHub -> Code (Clone) -> HTTPS -> Copy the URL.  
+`git clone [URL]`  
+
+Note the repo is cloned with the name as it's in the remote: git-course.  
+
+![clone-1](images/clone-1.png)
+
+---
+
+### 7.6 Pushing changes to remote-repo
+
+`git status`  
+`git add .`  
+`git commit -m "README.md updated again"`  
+
+With 'git lg' we can see that the local-repo is 1 commit ahead the origin (remote-repo).  
+
+`git push`
+
+***Conflict***
+
+In remote-repo edit README.md and commit.   
+In local-repo edit README.md and commit.   
+
+Pulling in the local-repo.  
+`git pull`  
+~~~
+From https://github.com/freddy-alexis-ht/git-course
+   199b7f0..5f3724d  master     -> origin/master
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+~~~
+
+If we check the IDE:
+
+![pull-3](images/pull-3.png)
+
+Remember at this point we're not in a specific branch, we're in rebase.
+Solve the conflict, edit the README.md in the IDE.  
+
+Save changes in local-repo.  
+`git add .`  
+`git commit -m "README.md modificado"`  
+
+Now, it should be pushed to remote-repo.    
+`git push`  
+
+There are some configurations we can apply, but it wasn't necessary for me.  
+~~~
+git config --global pull.ff only  
+git config --global pull.rebase true  
+~~~
+
