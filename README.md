@@ -1489,3 +1489,184 @@ git config --global pull.ff only
 git config --global pull.rebase true  
 ~~~
 
+---
+---
+
+## 8 GITHUB - BASIC
+
+***a) GitHub Interface***
+
+For example, if we check 'React' account:
+- Star .. it's like a 'Like'.
+- Watch .. it's like a 'Follow'. It's to be notified of activities and changes.  
+
+Tabs:
+- Code: The repo and its branches.  
+- Issues: Problems, suggestions, bug-fixes found and reported in our repo. They will be 'Open', and after it's solved, it'll be 'Closed'.  
+- Pull requests: To make changes to someone's repo, after validation.
+- Projects: Organize the project status, plan its future.  
+- Wiki: Official Documentation.  
+- Security: The teamwork that attends: deprecated libraries, legacy code, vulnerabilities, ...  
+- Insights: Statistics, the workflow of our team in the repo: contributors, community, commits, code frequency, ...
+- Fork: Copy a repo to my GitHub account, there it can be edited the way we want.
+
+---
+
+***b) MarkDown***
+
+Links:  
+- [GitHub Docs](https://docs.github.com/es)
+- [Emojis](https://www.webfx.com/tools/emoji-cheat-sheet/)
+- [MarkDown Tutorial](https://www.markdowntutorial.com/)
+
+---
+
+***c) Search file: Go to file***
+
+The 'Go to file' button take us to the image:  
+![search-1](images/search-1.png)
+
+When clicking on that particular file, there are three other options:
+- Go to line: To go to a specific line (when it's code or text).
+- Copy path: It would copy: 'historia/superman.md'. 
+- Copy permalink: It creates a link that takes us exactly to that file.
+
+--
+
+***d) Raw, Blame, History, Edit, Delete***
+
+- Raw: Opens a window with the file in a .txt format. It's possible to copy the link, and it will take us exactly to that raw view.
+- Blame: It's to know who did what and when. It shows the changes in a file since it was created, we can travel through commits.
+  - History: Timeline of commits.
+  - Normal view: To leave the 'Blame view'.
+- Edit: Icon: 'pencil'.
+- Delete: Icon: 'trash'.
+  - After click, it requires to do a commit.
+
+---
+
+***e) Create a new file in GitHub***
+
+Pull request: If we want to merge the branch-A with master, a pull-request will be useful to analyze the changes, this will be done by someone with higher skills.  
+This is usually done from the local-repo, but it's possible from the remote-repo too.
+
+- GitHub -> 'historia' folder -> Add file: Create new file -> batman.md (copy and paste text)  
+- Commit message: batman.md created
+- Create a new branch for this commit and start a pull request.
+  - Branch-name: branch-patch-batman
+- Click: Propose new file
+
+
+Then we go to this window:
+- Click: Create pull request
+
+![pull-request-1](images/pull-request-1.png)
+
+After that, we have this:  
+Clicking in 'Merge pull request' will accept the proposed changes and commit.  
+
+![pull-request-2](images/pull-request-2.png)
+
+But, in the lowe part, by clicking in 'Close with comment' we can discard that pull request.  
+Also, we can start a debate about if the commit is convenient or not, it's possible to mention other people to include them in the debate.  
+
+![pull-request-3](images/pull-request-3.png)
+
+The repo will continue the same, unless the pull-request is finally accepted.
+
+There are two possibilities in 'Merge pull request':
+- Create a merge commit: This creates a commit. Default option.
+- Squash and merge: Joins this commit with the previous one, so there won't be an extra commit.
+
+So:
+- Merge pull request -> Create a merge commit -> Confirm merge
+- We can delete the branch.
+
+![pull-request-4](images/pull-request-4.png)
+
+Finally, we can check the changes in the repo.
+
+In the end, to have this changes in the local-repo:  
+`git remote update`  
+`git status -uno`  
+`git pull`  
+`git lg`  
+
+![pull-request-5](images/pull-request-5.png)
+
+---
+
+***f) Git Fetch***
+
+--> Adding a file
+
+In GitHub -> master-branch -> Location: git-course/historia/
+- New File -> Name: historia.flash.md
+- Text: 
+~~~
+## Historia de Flash
+
+Flash (conocido también como The Flash y traducido en español: Destello) es el nombre de varios superhéroes ficticios que aparecen en los cómics estadounidenses publicados por DC Comics. Creado por el escritor Gardner Fox y el artista Harry Lampert, el "Flash" original apareció por primera vez en Flash Comics #1 (fecha de portada de enero de 1940 / mes de noviembre de 1939).1​ Apodado el "Corredor Escarlata", todas las encarnaciones del Flash poseen "súper velocidad", que incluye la capacidad de correr, moverse y pensar extremadamente rápido, también puede atravesar la materia sólida, usar reflejos sobrehumanos y aparentemente violar ciertas leyes de la física, como superar la velocidad de la luz.
+~~~
+- Commit message: Create historia.flash.md (default)
+- Commit new file
+
+Now, inside 'historia' folder there are three files:
+- batman.md
+- historia.flash.md
+- superman.md
+
+The name is not like the other, it can be changed:
+- Click in the file -> click in the pencil -> Change name: historia.md
+- Commit message: Rename historia.flash.md to flash.md (default)
+- Commit changes
+  - I created another commit by mistake, so at the end there'll be four commits.
+  
+Then, for some reason we have to delete 'flash.md'.
+- Click in the file -> Click in the garbage-icon
+- Commit message: Delete flash.md
+- Commit changes
+
+--> Checking the commits
+
+- In the repo -> click in the commits -> there we can see all the commits run in the remote-repo.
+  - But, it's like if nothing would've happened because we create a file and then delete it.
+
+![fetch-1](images/fetch-1.png)
+
+However, if we go to our local-repo, we cannot see those commits.
+- Using 'git lg' will tell us that both repos are side by side. 
+- But, for real, the remote-repo is 4 commits ahead the local-repo.
+- The last commit they had in common was *897326d*.
+
+![fetch-2](images/fetch-2.png)
+
+If we don't want to do a 'pull, merge or anything' we just want to update the repos.
+`git fetch`  
+`git lg`  
+
+![fetch-3](images/fetch-3.png)
+
+After, to sync the repos:  
+`git pull`  
+`git lg`
+
+It's recommendable always doing a 'fetch' before run any other command.
+
+---
+
+***g) Comments in the commits***
+
+In GitHub it's possible to add comments to any line by clicking in a blue-button +.  
+- Some options for comments are: edit, hide, delete.
+
+---
+
+***h) GitHub Flow***
+
+Related links:
+- [GitHub flow](https://docs.github.com/es/get-started/quickstart/github-flow)
+- [Repo relacionado](https://github.com/SvanBoxel/release-based-workflow/issues/1)
+
+![github-flow-1](images/github-flow-1.png)
+
