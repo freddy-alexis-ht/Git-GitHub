@@ -1674,9 +1674,9 @@ Related links:
 ---
 ---
 
-## 8 GITHUB - ADVANCED
+## 9 GITHUB - ADVANCED
 
-### 8.1 Fork - Clone - Collaborations
+### 9.1 Fork - Clone - Collaborations
 
 Case 1: Added as a collaborator 
 - If we have our project in a remote-repo (i.e. GitHub), it's possible to 'clone' it to any computer as a local-repo. Eventually we'll 'push' our changes to the remote-repo.  
@@ -1698,7 +1698,7 @@ In the third case, whenever we have done some changes in our forked-repo that we
 
 ---
 
-### 8.2 Forking - Cloning 
+### 9.2 Forking - Cloning 
 
 ***Forking another repo***
 
@@ -1744,7 +1744,7 @@ We can delete something in a file:
 
 ---
 
-### 8.3 Pull Request 
+### 9.3 Pull Request 
 
 To Do: Cloned-repo -> push -> Forked-repo -> PR -> original-repo  
 
@@ -1847,7 +1847,7 @@ We will receive a message, and also the contributors.
 
 ---
 
-### 8.4 Updating our forked-repo
+### 9.4 Updating our forked-repo
 
 ***Theory*** 
 
@@ -1920,7 +1920,7 @@ Then, considering a rebase:
 
 ---
 
-### 8.5 Workflow introduction (master-feature)
+### 9.5 Workflow introduction (master-feature)
 
 Considering a scenario like this:
 
@@ -1944,7 +1944,7 @@ And then: pull request
 
 ---
 
-### 8.6 Task: Create a new repo and a Tag
+### 9.6 Task: Create a new repo and a Tag
 
 ***Task 1: Create a repo***
 
@@ -1995,7 +1995,7 @@ Releases -> Create a new release -> Choose the tag -> v0.0.1
 
 ---
 
-### 8.7 Feature branch - Workflow via Pull Request
+### 9.7 Feature branch - Workflow via Pull Request
 
 It's possible to invite other people to participate in our GitHub-repo.  
 Settings -> Access: Collaborators  
@@ -2076,7 +2076,7 @@ But, in Local the branch is still there, so we should:
 
 ---
 
-### 8.8 Feature branch - Reviewing partners' job
+### 9.8 Feature branch - Reviewing partners' job
 
 ***Worker A: Changes GitHub-repo***
 
@@ -2170,7 +2170,7 @@ Unused branches should be deleted, see how many we have:
 
 ---
 
-### 8.9 Delete unused branches
+### 9.9 Delete unused branches
 
 While we work we'll have many branches we won't use anymore.  
 In this case, 'br-misiones' wasn't even ours, it's a partner's branch.  
@@ -2208,7 +2208,7 @@ In cases like this we have to run this command:
 
 ---
 
-### 8.10 Production branch
+### 9.10 Production branch
 
 Together with 'master' branch, usually some other branches are kept.  
 Maybe they're considered historical, stable, or similar. They are still used, and still receiving maintenance.  
@@ -2251,7 +2251,7 @@ But, what about if I had deleted that branch in Local and the reference to the r
 
 ---
 
-### 8.11 Recovering the production branch: br-kitkat
+### 9.11 Recovering the production branch: br-kitkat
 
 ***Recovering via Local***
 
@@ -2289,4 +2289,7 @@ Tags (combo-box) -> Find or create a branch: Write: br-kitkat
 
 -> In case branches and tags are deleted in local and remote, we would have to use 'git reflog'.  
 -> Tags shouldn't be deleted.
+
+---
+---
 
