@@ -2293,3 +2293,209 @@ Tags (combo-box) -> Find or create a branch: Write: br-kitkat
 ---
 ---
 
+## 10 GITHUB ISSUES - MILESTONES - CONTRIBUTORS
+
+Milestone .. something important we need to happen (hito), some features should be implemented, some bugs should be fixed
+It's a part of a project, helps us not to forget we're supposed to finish something.
+
+issue .. is like a question (don't know what to do), are very versatile they can even be used to send messages.
+
+### 10.1 Issues
+
+[Ver GitHub Issues](https://docs.github.com/en/issues)
+
+If it's not enabled: Settings -> Options -> Issues  
+
+***a) Crete an issue*** 
+Issue: 
+- To make questions. 
+- To tell the repo's admin I have an error.  
+- To collect all bugs and problems that should be solved before our work goes to Production env.  
+
+By default, the filter is set to: 'is:issue is:open'
+
+![issue-1](images/issue-1.png)
+
+If filters are deleted, it will display the actions we did that have a '#': 
+
+![issue-2](images/issue-2.png)
+
+New issue:
+- Title: Some Avengers are missing.
+- Description (to create two tasks)
+~~~
+# Request
+Please add these Avengers to thelist.
+- [ ] Nick Fury
+- [ ] Spiderman
+~~~
+- Click: Submit new issue
+
+---
+
+***b) Close an issue***
+
+It's possible to create an issue from a part of another issue.
+
+![issue-3](images/issue-3.png)
+
+Note that we already had #1 and #2, the issue is #3.  
+These are references, the numbers are tracked by GitHub.  
+An issue can be deleted, but it shouldn't be because of 'integrity'. It's better not to lose track of ##.  
+
+An issue created by mistake should have a comment like in the image.  
+
+![issue-4](images/issue-4.png)
+
+It also can be locked:  
+The admin will continue being able to comment, but others won't.
+
+![issue-5](images/issue-5.png)
+
+*-> A real issue will be closed like this:*  
+It says we should add 'Nick Fury' and 'Spiderman' in miembros.md.
+
+Go to the Local -> miembros.md -> Do the addition
+>This was done in the br-kitkat branch, maybe it should've been done in another feature-branch:  
+
+`git commit -am "Nick Fury and Spiderman added to miembros.md"`  
+`git push`  
+
+Go to GitHub and do the pull-request.  
+- Title: Merge: members added in misiones.md
+- Click: Create pull request
+- Check 
+  - In the line where the Avengers were added a comment can be added
+  - I.e. #3 This resolves the issue             
+    - The #3 added is a link to the issue
+- Click: Merge pull request
+- Confirm merge
+
+![issue-6](images/issue-6.png)
+
+*-> Another way to close an issue*  
+
+Another way to link the issue and the solution is:  
+Add a comment to the issue saying:
+- This was solved with this: [commit-hash] -> Close issue
+
+---
+
+***c) Deleting an issue***
+
+When trying to delete an issue, this will be displayed:
+- This cannot be undone
+- Only administrators can delete issues
+- Deletion will remove the issue from search and previous references will point to a placeholder
+
+---
+
+***d) Close an issue with a commit***
+
+Remote: New issue
+- Title: Delete Spiderman
+- Create issue (let's say the ref is: #5)
+
+Local:
+- miembros.md: delete Spiderman
+- `git commit -am "Fixes #5: Spiderman deleted in miembros.md"`
+- `git push`
+
+Remote:  
+It uses the ref to fix the issue and close it.
+
+---
+
+***e) Issue Templates***
+
+Settings -> Set up templates  
+- Add template
+  - Bug report: Standard bug report template
+  - Feature request: Standard feature request template
+  - Custom template: Blank template for other issue types
+- Select one
+- Edit / Preview
+- Click: Propose changes
+- Commit changes (everything is tracked by GitHub)
+
+New Issue
+- It suggests if it's a bug report or other.
+
+![issue-7](images/issue-7.png)
+
+This is useful when the project has a lot of interaction.
+- Many people report bugs, or demand new features, or similar. In this way everything can be tracked.  
+
+---
+
+***f) Labels (in Issues)***
+
+These are issue organizers. There are some default: 
+
+![labels-1](images/labels-1.png)
+
+While interacting with the issue, labels can be selected.  
+Labels can be used to filer issues.  
+
+Labels can be added to the Issue Templates too.
+
+---
+
+### 10.2 Milestone (hito)
+
+[Ver GitHub Milestone](https://docs.github.com/en/issues)
+
+You can use milestones to track progress on groups of issues or pull requests in a repository.  
+
+When you create a milestone, you can associate it with issues and pull requests.  
+
+- To better manage your project, you can view details about your milestone. From the milestone page, you can see:
+  - A user-provided description of the milestone, which can include information like a project overview, relevant teams, and projected due dates
+  - The milestone's due date
+  - The milestone's completion percentage
+  - The number of open and closed issues and pull requests associated with the milestone
+  - A list of the open and closed issues and pull requests associated with the milestone
+
+For example, we can group issues in a milestone for these:
+- **Beta launch:** File bugs you need to fix before you can launch the beta of your project. It's a great way to make sure you aren't missing anything.
+- **October Sprint:** File issues you'd like to work on in October. A great to focus your efforts when there's a lot to do.
+- **Redesign:** File issues related to redesigning your project. A great way to collect ideas on what you work on.  
+
+GitHub -> New Issue  
+Milestone -> Name: Beta launch -> Create and assign to new milestone  
+Submit new issue
+
+It's possible to add another issue, a due date and a description.
+
+![milestone-1](images/milestone-1.png)
+
+There are two issues in this milestone.
+
+![milestone-2](images/milestone-2.png)
+
+![milestone-3](images/milestone-3.png)
+
+![milestone-3](images/milestone-4.png)
+
+---
+
+### 10.3 Adding Contributors
+
+Settings -> Collaboratos -> Confirm password  
+
+![contributors-1](images/contributors-1.png)
+
+Add people -> an email will be send  
+The other person will have to Accept the invitation.  
+
+- The contributor cannot access to the repo-settings.
+- This person can clone, can even destroy the repo, so be carefull who you invite.  
+- Clicking in the trash-icon we can delete the collaborator.
+
+It's possible to transfer the ownership of the repo to a contributor:
+- Settings -> General -> Danger zone
+- Transfer ownership ...
+
+![transfer-1](images/transfer-1.png)
+
+
