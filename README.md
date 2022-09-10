@@ -685,6 +685,7 @@ The tag should be informative, usually with numbers.
 
 v1.0.0 -> [major-change].[new-functionality].[bug-fix]
 
+To create a tag in the last commit, it's not necessary to write the hash or HEAD^.  
 To create a tag in any commit .. copy the hash:  
 
 `git tag -a v0.1.0 2cbcce8 -m "Version: alpha"`  
@@ -1669,4 +1670,623 @@ Related links:
 - [Repo relacionado](https://github.com/SvanBoxel/release-based-workflow/issues/1)
 
 ![github-flow-1](images/github-flow-1.png)
+
+---
+---
+
+## 8 GITHUB - ADVANCED
+
+### 8.1 Fork - Clone - Collaborations
+
+Case 1: Added as a collaborator 
+- If we have our project in a remote-repo (i.e. GitHub), it's possible to 'clone' it to any computer as a local-repo. Eventually we'll 'push' our changes to the remote-repo.  
+  - If we are added as a 'collaborator' in a remote-repo that's not ours, we'll be able to do the same as if the remote-repo was ours.
+
+Case 2: Non-collaborator
+- If there is somebody else's remote repo, and we're not collaborators.
+  - We'll be able to clone it, make local commits, create branches, but we won't be able to do 'pushes' to GitHub.
+  
+Case 3: Forking the repo
+- In case we want to be collaborators in a remote-repo, maybe we have good ideas, or we found some errors that we know how to solve.  
+- Considering this remote-repo as public in GitHub, we can do a 'for':
+  - google/maps -> fork -> mi_usuario/maps (here we'll have total access)
+
+In the third case, whenever we have done some changes in our forked-repo that we want to show to the original owners, we have to do a 'pull request'.
+- Consider that the forked-repo is like a branch. So, the original-repo can merge the changes we send in a 'pull request'.
+
+![fork-1](images/fork-1.png)
+
+---
+
+### 8.2 Forking - Cloning 
+
+***Forking another repo***
+
+In this part we'll work with another repo.  
+[Use this repo](https://github.com/Klerith/legion-del-mal)
+
+![fork-2](images/fork-2.png)
+
+Note that the 'Add file' option is enabled.  
+- Creating or uploading a file will create a 'fork'.
+
+Click in 'Fork'.
+
+![fork-3](images/fork-3.png)
+
+Click in 'Create fork'.  
+This repo is completely ours, we can do anything with it.
+
+![fork-4](images/fork-4.png)
+
+***Cloning our repo (forked)***
+
+Copy the URL -> Open GitBash (choose the location) -> Command:  
+`git clone [URL]`  
+
+We'll have a folder 'legion-del-mal', we can change the name to '10-legion-del-mal'. There's no problem because the repo is inside the folder.  
+Open the folder with IntelliJ to see its content.  
+
+From GitBash:  
+`cd [project-location]`  
+
+It's possible to execute commands like:  
+`git lg`
+`git remote -v`  
+~~~
+origin  https://github.com/freddy-alexis-ht/legion-del-mal.git (fetch)
+origin  https://github.com/freddy-alexis-ht/legion-del-mal.git (push)
+~~~
+
+We can delete something in a file:  
+`git commit -am "README updated"`  
+`git push`  
+
+---
+
+### 8.3 Pull Request 
+
+To Do: Cloned-repo -> push -> Forked-repo -> PR -> original-repo  
+
+![pr-1](images/pr-1.png)
+
+**In the cloned-repo (local)**  
+
+Change 'miembros.md'.  
+`git commit -am "miembros.md changed"`  
+
+Create a file in 'aspirantes' folder, name: 'freddy.md', and add some text.  
+`git add .`  
+`git commit -m "freddy.md added"`
+
+`git push`  (send 2 commits)  
+
+**In our forked-repo (remote)**  
+
+In the interface there'll be an option 'Fetch upstream'. This is to update our forked-repo from the original-repo.  
+What we care about is the option 'Contribute'.
+- By clicking it, it'll tell us if our forked-repo is a number of commits ahead/behind the original-repo.  
+- Open Pull request.
+- We can see the changes before creating the pull request.
+  - If in this point we notice that we forgot some changes.
+  - We can go to the cloned repo, do the changes, push them.
+  - And then we can refresh the webpage and now there'll be an extra commit.
+- Create Pull Request.
+  - Add a message.
+  - Check in 'Allow edits by maintainers'.
+  - Create pull request.
+
+At this point the owners and contributors of the original-repo will receive an email because of our PR.  
+Also, now the control passes to them, because only those with 'write access' to the original-repo can 'merge pull requests'.  
+
+It's possible to cancel the PR by clicking 'Close pull request'.  
+
+**In the original-repo (remote)**  
+
+The admin has to accept or decline our PR.  
+Every PR has an icon: green: open / purple: closed (merged) / rojo: declined  
+
+Revision: The admin checks the PR.  
+There are 4 tabs: Conversation / Commits / Checks / Files changed
+
+'Conversation' is to interact with the PR-requester
+- Check the changes, make a reaction.
+- For example, in a file changed the admin can write a comment: "Why you did this?" -> Click: Add single comment  
+  - We receive the message, and we can reply.
+
+'Commits' is to check the commits one by one.
+
+'Files changed' -> Button: Review changes:  
+- Here the admin can do one of three things:
+  - Comment: Submit general feedback without explicit approval.
+  - Approve: Submit feedback and approve merging these changes.
+  - Request changes: Submit feedback that must be addressed before merging. (like a checklist)
+
+Maybe the admin doesn't want that 'miembros.md' change.
+- Write a comment
+- Select: Request changes
+- Submit review
+  - We receive that message.
+
+**In the cloned-repo (local)**  
+
+`git lg` to see where we did the action the admin requests us to change.  
+In the previous commit, copy the hash.  
+
+`git checkout [hash] miembros.md` to undo the changes in that file.  
+`git add .`   
+`git commit -m "miembros.md changes reverted"` 
+`git push`  
+
+**In our forked-repo (remote)**  
+
+What was requested is done.  
+Send a confirmation message.  
+
+**In the original-repo (remote)**  
+
+'Files changed' to review everything.  
+- Click in 'Review changes', write a message
+- Check 'Approve'
+- Submit review
+
+To finish: there are three options:
+- Create a merge commit
+  - All commits from this branch will be added to the base branch via a merge commit.
+- Squash and merge
+  - The # commits from this branch will be combined into one commit in the base branch.
+- Rebase and merge
+  - The # commits from this branch will be rebased and added to the base branch.
+
+Click in 'Squash and merge' 
+- Write a message-commit, it's a good idea appending the contributor name with @.
+- Click in 'Confirm'.
+
+The 'PR icon' will change to purple color.  
+We will receive a message, and also the contributors.  
+
+---
+
+### 8.4 Updating our forked-repo
+
+***Theory*** 
+
+`git pull`  
+It is used to sync our local-repo to the remote-repo.  
+This concept is valid in both cases: when we have cloned a repo, and when we have forked a repo.  
+
+In the image, what I have called before as 'original-repo' it's usually called 'upstream'. And, what I have called as 'remote-repo', it's called 'origin'.  
+So, we'll have two remote-repos: origin and upstream.
+
+`git remote add upstream <original-repo>` .. to add the original repo.  
+`git fetch upstream` .. to sync the upstream and the local.
+`git pull` .. and then again the cyle: git push -> pull request
+
+![upstream-1](images/upstream-1.png)
+
+***Practice: upstream -> origin -> local*** 
+
+Being in the forked-repo, there is an option 'Fetch upstream'.
+- There we can see the status, maybe it can be:
+  - The original-repo is 1 upstream commit from the forked-repo.
+- We have two options: Compare / Fetch and merge
+  - Fetch and merge: now both remote-repos are in sync.
+
+Being in the local-repo, to sync the local with the forked-repo (origin):
+`git pull`  
+
+***Practice: upstream -> local*** 
+
+Copy the original-repo URL: https://github.com/Klerith/legion-del-mal.git  
+Being in the local-repo.  
+
+`git remote -v`
+~~~
+origin  https://github.com/freddy-alexis-ht/legion-del-mal.git (fetch)
+origin  https://github.com/freddy-alexis-ht/legion-del-mal.git (push)
+~~~
+
+- This means that we read (fetch) from the 'origin', and we write (push) also to the 'origin'.  
+- But, our project can have many remote-repos.  
+- Usually if there is a remote-repo which will be only to fetch info, it's called as 'upstream'.  
+
+To add another remote-repo:  
+`git remote add upstream https://github.com/Klerith/legion-del-mal.git`  
+
+To check the remote-repos:  
+`git remote -v`
+~~~
+origin  https://github.com/freddy-alexis-ht/legion-del-mal.git (fetch)
+origin  https://github.com/freddy-alexis-ht/legion-del-mal.git (push)
+upstream  https://github.com/Klerith/legion-del-mal.git (fetch)
+upstream  https://github.com/Klerith/legion-del-mal.git (push)
+~~~
+
+- Even when it shows the 'push' in the 'upstream' we know we can't push to it.  
+
+If we have used 'git pull -u origin master', then the next time we can use just 'git pull'.  
+The same goes for the 'git fetch'.  
+So if we want to fetch from the upstream the command has to be:  
+`git fetch upstream`  
+`git pull upstream master`  
+
+Depending on the situation, the pull can turn into a: fast-forward or rebase  
+Then, considering a rebase:  
+`git commit -am "local updated from upstream"`  (to merge the changes in our local)
+`git rebase --continue`  (mark the conflict as solved)
+`git lg`  
+`git commit -am "README updated from Fork"`  
+`git push`  
+
+---
+
+### 8.5 Workflow introduction (master-feature)
+
+Considering a scenario like this:
+
+![workflow-1](images/workflow-1.png)
+
+When working on groups, usually every developer creates a feature-branch, in this case from the master.  
+
+Considering we have all branches in local, we can check other people's progress:  
+`git fetch`  .. to sync our branch
+`git branch -a`  .. to list all branches
+`git checkout rama-x`  .. to go to rama-x
+
+To merge changes to master and push them to the remote-repo:  
+`git checkout master`  
+`git merge rama-x`  
+`git push`  
+
+A better approach would be to push our local changes to our remote-branch.  
+`git push origin rama-x`  
+And then: pull request  
+
+---
+
+### 8.6 Task: Create a new repo and a Tag
+
+***Task 1: Create a repo***
+
+In this task we'll work with [this repo.](https://github.com/klerith/avengers)
+
+![task-1](images/task-1.png)
+
+GitHub interface -> Code -> Download zip (this doesn't download the commits-history)  
+Unzip and rename to '11-avengers' -> Open with IntelliJ.
+
+In GitHub: Create a repo: 'avengers' -> Public -> Create  
+When creating a repo with nothing inside, it shows this:  
+
+![task-2](images/task-2.png)
+
+Open GitBash, we can follow this commands:  
+~~~
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/freddy-alexis-ht/avengers-test.git
+git push -u origin master
+~~~
+
+***Task 2: Create a Tag***
+
+Working with tags:  
+`git tag my-release` .. tag with random name.  
+`git tag` .. to see all tags.  
+`git tag -d my-release` .. to delete a tag.  
+
+`git tag -a v0.1.0 2cbcce8 -m "Version: alpha"` .. tag in a commit.
+`git show v0.1.0` .. tag description.  
+ 
+So, if we want to create a tag, the command could be:  
+`git tag -a v0.0.1 cc1f326 -m "Version: Alpha"`  
+`git push --tags`  
+
+In the remote repo..  
+Releases -> Create a new release -> Choose the tag -> v0.0.1
+- Release title: Versión Alpha del producto.  
+- Description: Add some text
+- Check: This is a pre-release
+  - To indicate that this isn't ready for Production. This is like a release candidate.
+- Publish release
+
+![task-3](images/task-3.png)
+
+---
+
+### 8.7 Feature branch - Workflow via Pull Request
+
+It's possible to invite other people to participate in our GitHub-repo.  
+Settings -> Access: Collaborators  
+
+We're not supposed to work in branch-master, it's better feature-branch.  
+
+Local-repo, we can see the current branch with:  
+`git status`  
+`git branch`  
+
+***Creating another branch in Local***
+
+In Local, master branch.  
+Create 'villanos.md', add some text. Don't track it in master.  
+By creating files and the branch in this way, those files won't be considered in master, they won't even appear as untracked, they will be part of the just created branch.  
+
+Create the new branch and be in it:  
+`git checkout -b br-villanos`  
+`git add .`  
+`git commit -m "villanos.md added"`  
+
+At this point, the recently created branch is local. If we go to GitHub, only 'master' will be there.  
+The command to push our branch is a bit complex, so we can do this:  
+`git push`  
+
+And we'll have the correct command:  
+~~~
+fatal: The current branch br-villanos has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin br-villanos
+~~~
+
+Run the command:  
+`git push --set-upstream origin br-villanos`
+
+![feature-1](images/feature-1.png)
+
+And, in our GitHub-repo, it will ask if we want to 'Compare & pull request'.  
+
+![feature-2](images/feature-2.png)
+
+Click in 'Compare and pull request'.  
+- base: master <- compare: br-villanos   (able to merge)
+- PR Title: vilanos.md added
+- Comment: add some text.  
+- Create pull request
+
+GitHub checks if there's conflict or not.  
+In this case it says:
+- This branch has no conflics with the base branch
+  - Merging can be performed automatically.
+- If the PR haven't been merged, it's still possible to add some local changes, commit and push (git push) them to the remote-repo.
+  - In villanos.md add an extra line: Evil Domingo
+  - Commit: `git commit -am "Evil Domingo added to villanos.md"`
+  - Push: `git push`  (it's not necessary to add the destination)
+- That last commit will be part of the PR.
+
+![feature-3](images/feature-3.png)
+
+- After it has been checked by the admin and other contributors
+- Merge pull request -> Create a merge commit -> Confirm  
+- Don't delete br-villanos branch yet.
+
+![feature-4](images/feature-4.png)
+
+Now it's done, we can check the commits:  
+
+![feature-5](images/feature-5.png)
+
+Go to 'Branches', it's possible deleting it from GitHub.  
+Delete 'br-villanos' branch.  
+But, in Local the branch is still there, so we should:  
+`git checkout master`  
+`git fetch`  
+`git pull`  
+`git branch -d br-villanos`  
+
+---
+
+### 8.8 Feature branch - Reviewing partners' job
+
+***Worker A: Changes GitHub-repo***
+
+GitHub-repo: avengers-test -> branch: master  
+It's possible to create a branch in the interface.  
+br-misiones .. it'll b used by my team to create 'missions'.  
+If the branch doesn't exist, GitHub creates it, and take us to it.  
+- New File -> misiones.md -> Add some text.
+- Commit message: Create misiones.md   (default)
+- Click: Commit new file
+
+Obviously, in GitHub, branch 'master', there is no 'misiones.md'.  
+
+***Worker B: In Local***
+
+Maybe at this point, Worker-A tell us to check the changes he uploaded to br-misiones.  
+So, in our Local we can get those changes with this commands:  
+`git branch` .. only 'master'  
+`git pull`  
+`git lg`  
+`git branch` .. still only 'master'  
+`git pull -all`  
+`git branch` .. only 'master', 'br-misiones' should be also here  
+
+![feature-6](images/feature-6.png)
+
+But, the other branches are there, we just don't see them. Run:  
+`git branch --all`  
+~~~
+* master
+  remotes/origin/br-misiones
+  remotes/origin/br-villanos
+  remotes/origin/master
+~~~
+
+To change to worker-A's branch:  
+`git checkout br-misiones`  
+~~~
+Switched to a new branch 'br-misiones'
+branch 'br-misiones' set up to track 'origin/br-misiones'.
+~~~
+
+***Working on worker-A's branch, but in Local***  
+
+Now, that branch is visible:  
+`git branch`
+~~~
+* br-misiones
+  master
+~~~
+
+Because of this change, in IntelliJ we have that branch set: worker-A's branch  
+For some reason (i.e. vacation), worker-A is not present, so we add a line to 'misiones.md', because it was necessary:  
+~~~
+### Missions
+
+* Investigate Dr. Doom plans
+* Capture Red Skull
+~~~
+
+`git commit -am "misiones.md updated"`  
+`git push`  
+
+Now that change is in the GitHub-repo, br-misiones branch.
+
+***GitHub repo - Pull request***  
+
+Click in 'Compare and pull request' -> Check
+- Create pull request
+- Add a title
+- Add some descriptions
+- Create pull request.
+- We'll see:
+  - This branch has no conflicts with the base branch  
+    Merging can be performed automatically.
+- Merge pull request
+- Confirm
+
+Go to 'master' branch and now we'll have there 'misiones.md'.  
+Delete 'br-misiones' from GitHub.  
+
+***Branches in Local***  
+
+Unused branches should be deleted, see how many we have:  
+`git branch --all`  
+- 'br-misiones' (green) current local branch
+- 'master' (white) another local branch
+- The rest (red) remote branches
+
+![feature-7](images/feature-7.png)
+
+---
+
+### 8.9 Delete unused branches
+
+While we work we'll have many branches we won't use anymore.  
+In this case, 'br-misiones' wasn't even ours, it's a partner's branch.  
+
+`git checkout master`  
+Here I don't have the last changes, i.e. misiones.md. But, there's no problem, because I know all that is in the GitHub-repo master branch.  
+
+`git fetch`  
+`git pull`  
+
+`git branch -all`
+~~~
+* master
+  br-misiones
+  remotes/origin/master
+  remotes/origin/br-misiones
+  remotes/origin/br-villanos
+~~~
+
+So, we don't need 'br-misiones', and remember that in remote only 'master' exists.  
+
+To delete a local branch:  
+`git branch -d br-misiones`
+
+Trying to delete the ref to a remote branch:  
+`git push origin :br-misiones`
+
+It can't delete those branches because they don't exist in remote.
+- If we had run this command when the branch existed in local and remote, it'd have been ok. But, we first delete the branch in remote, that's why it's not working.  
+
+In cases like this we have to run this command:  
+`git remote prune origin`
+
+![feature-8](images/feature-8.png)
+
+---
+
+### 8.10 Production branch
+
+Together with 'master' branch, usually some other branches are kept.  
+Maybe they're considered historical, stable, or similar. They are still used, and still receiving maintenance.  
+In these cases, branches are tagged, so they have a version in particular.  
+These other branches can also be called 'production-branches'.  
+
+***Local***
+
+`git checkout -b br-kitkat`  
+
+In Local: villanos.md: add villain: Unfriendly Lucas, and delete a villain.  
+
+`git commit -am "Lucas added to villanos.md"`  
+`git push`  
+`git push --set-upstream origin br-kitkat`  
+
+So, 'br-kitkat' will be kept, won't be deleted.  
+It's recommendable to tag the branch.  
+
+`git tag -a v1.0.0 -m "KitKat v1.0.0 - stable"`
+
+![production-1](images/production-1.png)
+
+***GitHub***  
+
+Create release from tag
+- Release title: Versión KitKat v1.0.0
+- Description
+- Publish release
+
+It's important to tag it.   
+If someone deletes br-kitkat in remote, we still can use the tag.
+
+As we still have br-kitkat in Local, we can push it and Remote will have that branch again.  
+But, what about if I had deleted that branch in Local and the reference to the remote too?  
+
+`git checkout master`  
+`git branch -d br-kitkat`  
+`git remote prune origin`  
+
+---
+
+### 8.11 Recovering the production branch: br-kitkat
+
+***Recovering via Local***
+
+`git tag`  
+`git checkout v.1.0.0`  
+
+Notice that at this point we're not precisely in a branch, it's the tag.  
+
+![production-2](images/production-2.png)
+
+To create a branch in that point:
+`git checkout -b br-kitkat`  
+`git push`  
+`git push --set-upstream origin br-kitkat`  
+
+![production-3](images/production-3.png)
+
+Now, the branch 'br-kitkat' is in remote.  
+Lastly, in local we can 'checkout' to master to continue our work.  
+
+***Recovering via GitHub***
+
+In Local:  
+`git checkout master`  
+`git branch -d br-kitkat`  
+
+To delete the branch in GitHub-repo from our local:  
+`git push origin :br-kitkat`
+
+But, now I want br-kitkat branch in the remote.  
+Interface: branch (combo-box) -> tags -> v1.0.0  
+Tags (combo-box) -> Find or create a branch: Write: br-kitkat  
+
+![production-4](images/production-4.png)
+
+-> In case branches and tags are deleted in local and remote, we would have to use 'git reflog'.  
+-> Tags shouldn't be deleted.
 
