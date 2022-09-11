@@ -2498,4 +2498,241 @@ It's possible to transfer the ownership of the repo to a contributor:
 
 ![transfer-1](images/transfer-1.png)
 
+---
+---
+
+## 11 WIKIS - PROJECTS - GITHUB PAGES - INSIGHTS
+
+### 11.1 Wikis
+
+GitHub: repo: avengers-test  
+
+Wikis are like the Wikipedia or our project.  
+- User documentation/manual.
+- The way the repo works: installation, requirements to initiate the project.
+- It can be edited by contributors.
+- It creates unique URLs to share.
+
+Settings:
+
+![wikis-1](images/wikis-1.png)
+
+***Create the first/home page***
+
+![wikis-2](images/wikis-2.png)
+
+When the headers are used, GitHub creates anchor-tags.
+- Click there -> copy the unique URL -> when the URL is used it'll take us exactly to that place.
+
+![wikis-3](images/wikis-3.png)
+
+***Create new page***
+
+New page: Name: Instalaciones
+
+![wikis-4](images/wikis-4.png)
+
+***Linking pages***
+
+Let's say: Clicking in 'Write here' should take us to 'Contact' webpage.
+
+![wikis-5](images/wikis-5.png)
+
+Edit 'Home' -> Click in the 'link' menu option
+- Write the text.
+- Write the URL or the name fo the page.
+- Save page.
+
+![wikis-6](images/wikis-6.png)
+
+Test it by clicking in the link (in Home), it will go to the Contact page.
+
+***Ordering pages***
+
+As we can see here, Home is first, and the rest is in alphabetical order.  
+
+![wikis-5](images/wikis-5.png)
+
+To re-order the pages: click in 'Add a custom sidebar'.  
+
+![wikis-7](images/wikis-7.png)
+
+![wikis-8](images/wikis-8.png)
+
+---
+
+### 11.2 Projects
+
+Projects is like a whiteboard where we can classify items.
+- Tasks to do.
+- Urgent tasks to do.
+- Tasks that someone has to do.
+
+Some teams create a new repo to use the Projects feature.  
+In this case we'll use it inside this repo.
+
+Click in 'Projects'
+- This takes us to the main page (out of the repo).
+- After creating the Project (without any template)
+  - Name: Avengers
+- Go to the repo (avengers-test)
+  - Projects -> Add project -> select 'Avengers' -> Click in it
+  - View -> Boards (there are three columns by default).
+
+![projects-1](images/projects-1.png)
+
+![projects-2](images/projects-2.png)
+
+To edit the view:  
+Settings -> Status
+
+![projects-3](images/projects-3.png)
+
+The interface is not like in the video, it has changed.  
+For example, in the video it's possible to select specific options for each column.  
+
+***Working in Todo column***
+
+- It's possible to add:
+  - Draft: It's like a note.
+  - Issues: The issues created can be in here
+
+For example:  
+Create an issue: Name: Team tasks  
+Description:  
+~~~
+### TODO:
+- [ ] Tarea 1
+- [ ] Tarea 2
+- [ ] Tarea 3
+- [ ] Tarea 4
+~~~
+Submit new issue  
+
+![projects-4](images/projects-4.png)
+
+Add the issue to the board:
+
+![projects-5](images/projects-5.png)
+
+When we finish the 4 tasks we can close the issue. Automatically, the card will move from 'In Progress' to 'Done'.  
+
+![projects-6](images/projects-6.png)
+
+---
+
+### 11.3 GitHub Pages - User and Repo
+
+Free Hosting: GitHub Pages is useful to deploy a website in GitHub.  
+- It serves files: .html, .css, .js, .md. 
+- Side server programming languages are discarded: .php, .java, ... But if our code make HTTP-requests to a backend, it works fine. 
+- It is used to create a portfolio.
+
+It can be used to create a webpage for a specific repo, or a webpage for the user.  
+
+***a) Creating a webpage for the User/Organization***
+
+Our URL will be: freddy-alexis-ht.github.io  
+By the end of this, it should take me to my webpage (doesn't exist yet).
+
+New repo
+- Name: freddy-alexis-ht.github.io
+- Public
+- Create repository
+- Settings
+- Pages
+  - Source/Branch: Here a branch or a folder can be selected, I don't have any now, so leave it.
+
+
+To add a theme, 'master' should exist (in the video, themes are there to be selected, not in my case)  
+However, [here are the themes](https://pages.github.com/themes/)
+
+For example, choose 'Architect'. It'll take us to its repo -> copy the content of 'index.md'.  
+Create a file in our repo: name: index.md -> paste the text.  
+Now, if we go to: <freddy-alexis-ht.github.io> we'll see our webpage.
+
+![page-1](images/page-1.png)
+
+Commit changes in 'index.md' are not immediate, they might take a few minutes to be visible in our webpage.
+
+Some links:
+- [Add a theme](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll)
+- [GitHub Blog](https://github.blog/)
+
+---
+
+***b) Creating a webpage for a specific repo/project***
+
+The repo or branch used to deploy a website ends up being Public, so be careful.  
+The master branch or any other can be used to deploy the website, but usually it's better to have a folder for that purpose.  
+
+In Local: 11-avengers' repo:  
+- `git checkout -b br-web`  
+- Create directory: docs  
+- Create static content: index.html  
+
+index.html  
+~~~
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Freddy's Page</title>
+</head>
+<body>
+    <h2>Mi título</h2>
+    <hr>
+    <p>Hola Mundo</p>
+    <script src="./js/app.js"></script>
+</body>
+</html>
+~~~
+
+Inside 'docs' create the directory 'js', and in it this file:  
+app.js  
+~~~
+console.log("Hola mundo desde JavaScript");
+~~~
+
+![page-2](images/page-2.png)
+
+`git add .`  
+`git commit -m "Website added"`  
+`git push`  
+`git checkout master`  
+`git merge br-web`  
+`git push`  
+
+In GitHub:  
+
+![page-3](images/page-3.png)
+
+Settings -> Pages -> Source: main -> Select folder: /docs -> Save  
+
+After a few seconds, we'll see the image. The webpage is: https://freddy-alexis-ht.github.io/avengers-test/  
+Notice that the webpage uses HTTPS, it has its own Certificate.
+
+![page-4](images/page-4.png)
+
+---
+
+### 11.4 Insights
+
+Statistical information about the activity in the repo 'avengers-test': 
+
+![insight_1](images/insight_1.png)
+
+All the options shown are good. A useful one is 'Network':
+
+![insight_2](images/insight_2.png)
+
+There is not much info in the previous repo because it's new. But, if we go to repo like 'facebook-react':  
+
+![insight_3](images/insight_3.png)
+![insight_4](images/insight_4.png)
+![insight_5](images/insight_5.png)
+![insight_6](images/insight_6.png)
+
+---
+---
 
