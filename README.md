@@ -2736,3 +2736,103 @@ There is not much info in the previous repo because it's new. But, if we go to r
 ---
 ---
 
+## 12 ORGANIZATIONS - TEAMS
+
+### 12.1 Organizations
+
+An Organization can be considered as an IT Department.  
+Every organization have Teams: Infrastructure, Development, DB, Support  
+In every team there can be more teams:
+- Development Team, can have a team for App-A, another for App-B.
+- Also, a Dev Team for Juniors, this team would have some access limitation due to their seniority.
+
+The idea is to classify people, tasks, projects, in general: resources.  
+
+***a) Creating an Organization***
+
+New -> Organization  
+
+- [Organization Plans](https://github.com/organizations/plan)
+
+Something great is that even in the Free-tier we have 'Unlimited public/private repositories'.  
+
+![org-1](images/org-1.png)
+
+- Organization account name: Domingo's Life
+  - It's important to set a name we won't change, because a URL will be created with it.
+  - There it says: "Your URL will be: https://github.com/Domingo-s-Life"
+- Contact email
+- Personal account
+
+![org-2](images/org-2.png)
+
+In this view, we have to give some info -> Submit
+
+![org-3](images/org-3.png)
+
+In my account I can have private and public repos, and also in my organization I can have private and public repos.  
+
+---
+
+***b) Transfer a repo to an organization***
+
+To transfer the domain of our repo to an Organization, we need the name of the latter.  
+
+Being in the main-user -> repo: avengers-test -> Settings -> Transfer ownership
+- Write the organization's name.
+
+![org-4](images/org-4.png)
+
+![org-5](images/org-5.png)
+
+---
+
+### 12.2 Teams
+
+***a) Teams and repos***
+
+With the Organization's user
+- Teams, it's like a little organization
+
+![teams-1](images/teams-1.png)
+
+- New team
+- Team name: Developers
+- Description
+- Team visibility
+  - Visible: To every organization member
+  - Secret: Only visible to team members
+
+![teams-2](images/teams-2.png)
+
+Click in Developers-Senior -> Repositories -> Add: avengers-test
+
+![teams-3](images/teams-3.png)
+
+---
+
+***b) Privileges***
+
+At this point our organizations has 3 teams and 1 repository.  
+
+All team-members in 'Developers-Senior/avenger-test' by default have 'Read' privileges.  
+- Read: fork, pull-request, clone, read.
+- Admin: Issues, manage PR, merge, include collaborators.
+
+![teams-4](images/teams-4.png)
+
+Changing permissions applies to all team-members.
+
+---
+
+***c) About the members***
+
+Tab: People  
+- 2FA: Two-Factor Authentication.  
+- Private: Your membership is only visible to other members of this organization.
+- Public: Your membership is visible to everyone and is displayed on your public profile.
+- Role: Owner/Member
+
+![teams-5](images/teams-5.png)
+
+
