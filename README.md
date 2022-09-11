@@ -2835,4 +2835,84 @@ Tab: People
 
 ![teams-5](images/teams-5.png)
 
+---
+---
+
+## 13 GIST
+
+***a) About Gist***
+
+It's public or secret, but can't be private. Everyone will see it.  
+- Secret: It won't be found by the GitHub search-engine, but anyone with the URL can access to it.
+
+It can be considered as a public mini-repo (follow changes, who did what, ...).  
+
+It's useful in situations like:
+- Share info with the community.
+  - Publish code/text to students/friends that we don't want them to write again, or search.
+  - Share code, binaries (pdf, images, zip).
+- Create repo of very useful code: 
+  - How to obtain a random number between two limits.
+  - How to use a specific class or interface.
+  - Email validation.
+  - Recommended steps installation.
+
+***b) Create a Gist***
+
+New gist
+- Gist description: Java: method for random
+- File name: RandomNumber.java
+- Write code
+- Create secret gist
+- Copy the URL
+  - In an Incognito window: paste the URL -> accessible
+
+![gist-1](images/gist-1.png)
+
+- Changes are also tracked.
+- The same gist can have many files.
+
+---
+
+### 13.1 Gist plugins - Personal tokens
+
+
+![gist-2](images/gist-2.png)
+
+***Link my GitHub Gist with my IntelliJ***
+
+- Create token access
+  - In GitHub -> main view -> Settings (account)
+  - Developer settings -> Personal access tokens
+  - Name: Gist-Intellij
+  - No expiration
+  - Check: Gist
+  - Generate token -> copy and save it
+
+- GitHub Gist plugin in IntelliJ  
+  - IntelliJ -> Plugin -> Gist -> Install
+  - Settings: Check the way gist works in the IDE
+  - Alt + I to insert gists
+    - Add GitHub account
+    - Enter token
+
+![gist-3](images/gist-3.png)
+![gist-4](images/gist-4.png)
+
+Changing the token, now it works. Gists can be inserted easily in the IDE.  
+
+![gist-5](images/gist-5.png)
+
+It's possible to create Gists from IntelliJ.
+- Git tab -> GitHub -> Create Gist..
+- Immediatelly it'll be visible in GitHub Gist
+
+---
+
+### 13.2 All Gists
+
+GitHub Gist -> All Gists -> This is the worldwide repo for gists.  
+
+![gist-6](images/gist-6.png)
+
 
