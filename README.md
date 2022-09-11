@@ -2915,4 +2915,27 @@ GitHub Gist -> All Gists -> This is the worldwide repo for gists.
 
 ![gist-6](images/gist-6.png)
 
+---
+---
 
+## 14 SSH
+
+Local
+~~~
+mkdir .ssh  
+cd .ssh  
+ssh-keygen -t rsa -C "freddy.alexis.ht@gmail.com"  
+~~~
+
+It generates two files in 'C:\Users\Usuario\.ssh'. Use the id_rsa.pub  
+
+GitHub -> Settings -> SSH -> New SSH Key  
+- Title
+- Key: id_rsa.pub copy and paste -> Add SSH key
+
+`ssh -T git@github.com`  
+Message: Permanently added 'github.com,[IPv4]' (RSA) to the list of known hosts.  
+
+Clone a repo using SSH:  
+`git clone [repo-URL] demo-name`  
+Go inside 'demo-name' folder and work as if 'HTTPS' would have been used.  
