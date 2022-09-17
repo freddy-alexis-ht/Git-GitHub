@@ -1,4 +1,85 @@
+# INDEX
+
+[1. PROJECT CONFIGURATION AND BASIC COMMANDS](#1-project-configuration-and-basic-commands)<br>
+- [1.1 Local-repo and Remote-repo](#11-local-repo-and-remote-repo) //
+[1.2 Project creation](#12-project-creation) //
+[1.3 Initial Commands](#13-initial-commands) //
+[1.4 Course project](#14-course-project)
+
+[2. ADVANCED COMMANDS](#2-advanced-commands)<br>
+- [2.1 Module '02-instalaciones' - diff and amend](#21-module-02-instalaciones---diff-and-amend) //
+[2.2 Module '03-heroes' - Time travel, reset and reflog](#22-module-03-heroes---time-travel-reset-and-reflog) //
+[2.3 Module '03-heroes' - change name and delete files with git](#23-module-03-heroes---change-name-and-delete-files-with-git) //
+[2.4 Module '03-heroes' - change name and delete files without git](#24-module-03-heroes---change-name-and-delete-files-without-git) //
+[2.5 Ignoring files](#25-ignoring-files)
+
+[3. BRANCHES & MERGE](#3-branches--merge)<br>
+- [3.1 Project '04-merge' - Fast-forward merge](#31-project-04-merge---fast-forward-merge) //
+[3.2 Project '04-merge' - Automatic merge](#32-project-04-merge---automatic-merge) //
+[3.3 Project '04-merge' - Manual merge (conflicts)](#33-project-04-merge---manual-merge-conflicts)
+
+[4. TAGS](#4-tags)
+
+[5. GIT STASH - TEMPORAL STORAGE](#5-git-stash---temporal-storage)<br>
+- [5.1 Stash](#51-stash) //
+[5.2 Stash Avanzado](#52-stash-avanzado)
+
+[6. GIT REBASE - EMERGENCY CHANGES](#6-git-rebase---emergency-changes)<br>
+- [6.1 Normal Rebase - Updating a branch](#61-normal-rebase---updating-a-branch) //
+[6.2 Rebase Squash - Meld commits](#62-rebase-squash---meld-commits) //
+[6.3 Rebase Reword](#63-rebase-reword) //
+[6.4 Rebase Edit](#64-rebase-edit)
+
+[7. GITHUB: GIT REMOTE, PUSH, PULL](#7-github-git-remote-push-pull)<br>
+- [7.1 GitHub - Push](#71-github---push) //
+[7.2 New remote repo](#72-new-remote-repo) //
+[7.3 Pushing tags from our local-repo](#73-pushing-tags-from-our-local-repo) //
+[7.4 Pull the last changes of the remote-repo](#74-pull-the-last-changes-of-the-remote-repo) //
+[7.5 Cloning a remote-repo](#75-cloning-a-remote-repo) //
+[7.6 Pushing changes to remote-repo](#76-pushing-changes-to-remote-repo)
+
+[8 GITHUB - BASIC](#8-github---basic)
+
+[9 GITHUB - ADVANCED](#9-github---advanced)<br>
+- [9.1 Fork - Clone - Collaborations](#91-fork---clone---collaborations) //
+[9.2 Forking - Cloning](#92-forking---cloning) //
+[9.3 Pull Request](#93-pull-request) //
+[9.4 Updating our forked-repo](#94-updating-our-forked-repo) //
+[9.5 Workflow introduction (master-feature)](#95-workflow-introduction-master-feature) //
+[9.6 Task: Create a new repo and a Tag](#96-task-create-a-new-repo-and-a-tag) //
+[9.7 Feature branch - Workflow via Pull Request](#97-feature-branch---workflow-via-pull-request) //
+[9.8 Feature branch - Reviewing partners' job](#98-feature-branch---reviewing-partners-job) //
+[9.9 Delete unused branches](#99-delete-unused-branches) //
+[9.10 Production branch](#910-production-branch) //
+[9.11 Recovering the production branch: br-kitkat](#911-recovering-the-production-branch-br-kitkat) //
+
+[10 GITHUB ISSUES - MILESTONES - CONTRIBUTORS](#10-github-issues---milestones---contributors)<br>
+- [10.1 Issues](#101-issues) //
+[10.2 Milestone (hito)](#102-milestone-hito) //
+[10.3 Adding Contributors](#103-adding-contributors)
+
+[11 WIKIS - PROJECTS - GITHUB PAGES - INSIGHTS](#11-wikis---projects---github-pages---insights)<br>
+- [11.1 Wikis](#111-wikis) //
+[11.2 Projects](#112-projects) //
+[11.3 GitHub Pages - User and Repo](#113-github-pages---user-and-repo) //
+[11.4 Insights](#114-insights)
+
+[12 ORGANIZATIONS - TEAMS](#12-organizations---teams)<br>
+- [12.1 Organizations](#121-organizations) //
+[12.2 Teams](#122-teams)
+
+[13 GIST](#13-gist)<br>
+- [13.1 Gist plugins - Personal tokens](#131-gist-plugins---personal-tokens) //
+[13.2 All Gists](#132-all-gists)
+
+[14 SSH](#14-ssh) 
+
+
+
+---
+
 ## 1. PROJECT CONFIGURATION AND BASIC COMMANDS
+[Index](#index)
 
 For this course it's necessary to have git version 2.10+
 
@@ -26,6 +107,7 @@ If the branch is already created, the name can be changed with:
 ---
 
 ### 1.2 Project creation
+[Index](#index)
 
 - Open IntelliJ -> New project -> Java: 1.8
   - Project name: pry-git
@@ -34,6 +116,7 @@ If the branch is already created, the name can be changed with:
 ---
 
 ### 1.3 Initial Commands
+[Index](#index)
 
 `git --version`
 
@@ -63,6 +146,7 @@ To edit the configuration:
 ---
 
 ### 1.4 Course project
+[Index](#index)
 
 - The project '01-bases' is given in the course:
 - New module -> Name: 01-bases -> paste the files here
@@ -160,6 +244,7 @@ As the alias were set in global mode, it affects all repos.
 ---
 
 ## 2. ADVANCED COMMANDS
+[Index](#index)
 
 ### 2.1 Module '02-instalaciones' - diff and amend
 
@@ -209,7 +294,9 @@ Then add the changes with 'git add .' and write the correct commit.
 `git commit -m "another correct message`
 
 ---
+
 ### 2.2 Module '03-heroes' - Time travel, reset and reflog
+[Index](#index)
 
 ***a) Working with the project***
 
@@ -331,6 +418,7 @@ Each 'hash' represents modifications in the history of logs.
 ---
 
 ### 2.3 Module '03-heroes' - change name and delete files with git
+[Index](#index)
 
 ***a) Renaming***
 
@@ -387,6 +475,7 @@ We have what we wanted, everything in the logs.
 ---
 
 ### 2.4 Module '03-heroes' - change name and delete files without git
+[Index](#index)
 
 ***a) Renaming***
 
@@ -437,6 +526,7 @@ Differences:
 ---
 
 ### 2.5 Ignoring files
+[Index](#index)
 
 Create some files that we don't want to be tracked.  
 `git status`  
@@ -453,6 +543,7 @@ The first one is for directories, and the next one for files.
 ---
 
 ## 3. BRANCHES & MERGE
+[Index](#index)
 
 ***a) Merge types***
 
@@ -466,6 +557,7 @@ The first one is for directories, and the next one for files.
 ---
 
 ### 3.1 Project '04-merge' - Fast-forward merge
+[Index](#index)
 
 ***a) Project***
 
@@ -542,6 +634,7 @@ If we don't mind about those changes, to force the deletion we can use:
 ---
 
 ### 3.2 Project '04-merge' - Automatic merge
+[Index](#index)
 
 To create a branch and to move to it:  
 `git branch br-villanos`  
@@ -623,6 +716,7 @@ It will display:
 ---
 
 ### 3.3 Project '04-merge' - Manual merge (conflicts)  
+[Index](#index)
 
 Both branches modified the same file.
 
@@ -663,6 +757,7 @@ Delete the other branch.
 ---
 
 ## 4. TAGS
+[Index](#index)
 
 Reference to a specific commit and to the state of a project in a period of time.  
 
@@ -702,6 +797,7 @@ Tag description:
 ---
 
 ## 5. GIT STASH - TEMPORAL STORAGE
+[Index](#index)
 
 ***Stash***  
 It's like a vault where we can put files, even those untracked by git.  
@@ -722,6 +818,7 @@ It allows to join/split commits, to rename commits, ...
 ---
 
 ### 5.1 Stash   
+[Index](#index)
 
 This project will be used for this part:  
 
@@ -913,6 +1010,7 @@ Remember the stash wasn't dropped.
 ---
 
 ### 5.2 Stash Avanzado  
+[Index](#index)
 
 `git stash clear` .. removes all the stashes.  
 - They can be recovered with 'git reflog'.  
@@ -973,6 +1071,7 @@ So far I have 4 stashes, let's say I decided to keep only the last one.
 ---
 
 ## 6. GIT REBASE - EMERGENCY CHANGES
+[Index](#index)
 
 ***Simple Rebase***  
 
@@ -998,6 +1097,7 @@ It moves the last 3 commits to a Temporal-Area, and later they are put back in t
 ---
 
 ### 6.1 Normal Rebase - Updating a branch
+[Index](#index)
 
 In this part this project will be used:  
 
@@ -1052,6 +1152,7 @@ The branch 'rama-misiones-completadas' can be deleted.
 ---
 
 ### 6.2 Rebase Squash - Meld commits
+[Index](#index)
 
 Being in 'master'.  
 There are two files: misiones.md & misiones-completadas.md  
@@ -1171,6 +1272,7 @@ s c731cc5 Actualizamos misiones completadas
 ---
 
 ### 6.3 Rebase Reword
+[Index](#index)
 
 `git rebase -i HEAD~4`  
 
@@ -1220,7 +1322,8 @@ Check the logs:
 
 ---
 
-### 6.3 Rebase Edit
+### 6.4 Rebase Edit
+[Index](#index)
 
 Modify the files: README.md, misiones.md, villanos.md.  
 Then, we decide to revert what was done in README.md.  
@@ -1278,6 +1381,7 @@ There are no more tasks, so this will end the 'interactive rebase'.
 ---
 
 ## 7. GITHUB: GIT REMOTE, PUSH, PULL
+[Index](#index)
 
 Have in mind that Git doesn't manage access control to the repo.  
 - For this task we have some 'hosted services' like: GitHub, Bitbucket, ...
@@ -1294,6 +1398,7 @@ Useful link:
 ---
 
 ### 7.1 GitHub - Push
+[Index](#index)
 
 'origin' is the name of the repo, it's a convention.  
 `git remote add origin [URL]`  
@@ -1317,6 +1422,7 @@ origin  https://github.com/freddy-alexis-ht/Git-GitHub.git (push)
 ---
 
 ### 7.2 New remote repo
+[Index](#index)
 
 ***Local repo***
 
@@ -1336,6 +1442,7 @@ On GitBash, run the commands:
 ---
 
 ### 7.3 Pushing tags from our local-repo
+[Index](#index)
 
 ***a) Tags***
 
@@ -1401,6 +1508,7 @@ And, in the main-page of the remote-repo, the Release will be there.
 ---
 
 ### 7.4 Pull the last changes of the remote-repo
+[Index](#index)
 
 It's possible to edit a file in GitHub.  
 - README.md -> Edit
@@ -1432,6 +1540,7 @@ As we can see in the image, it applied the 'fast-forward' because there were no 
 ---
 
 ### 7.5 Cloning a remote-repo
+[Index](#index)
 
 Delete the project '09-heroes' .. this is to simulate that we lose our work.  
 There's no problem, because it's in GitHub.  
@@ -1446,6 +1555,7 @@ Note the repo is cloned with the name as it's in the remote: git-course.
 ---
 
 ### 7.6 Pushing changes to remote-repo
+[Index](#index)
 
 `git status`  
 `git add .`  
@@ -1494,6 +1604,7 @@ git config --global pull.rebase true
 ---
 
 ## 8 GITHUB - BASIC
+[Index](#index)
 
 ***a) GitHub Interface***
 
@@ -1607,7 +1718,7 @@ In GitHub -> master-branch -> Location: git-course/historia/
 ~~~
 ## Historia de Flash
 
-Flash (conocido también como The Flash y traducido en español: Destello) es el nombre de varios superhéroes ficticios que aparecen en los cómics estadounidenses publicados por DC Comics. Creado por el escritor Gardner Fox y el artista Harry Lampert, el "Flash" original apareció por primera vez en Flash Comics #1 (fecha de portada de enero de 1940 / mes de noviembre de 1939).1​ Apodado el "Corredor Escarlata", todas las encarnaciones del Flash poseen "súper velocidad", que incluye la capacidad de correr, moverse y pensar extremadamente rápido, también puede atravesar la materia sólida, usar reflejos sobrehumanos y aparentemente violar ciertas leyes de la física, como superar la velocidad de la luz.
+Flash (conocido también como The Flash y traducido en español: Destello) es el nombre de varios superhéroes ficticios que aparecen en los cómics estadounidenses publicados por DC Comics. Creado por el escritor Gardner Fox y el artista Harry Lampert, el "Flash" original apareció por primera vez en Flash Comics #1 (fecha de portada de enero de 1940 / mes de noviembre de 1939). Apodado el "Corredor Escarlata", todas las encarnaciones del Flash poseen "súper velocidad", que incluye la capacidad de correr, moverse y pensar extremadamente rápido, también puede atravesar la materia sólida, usar reflejos sobrehumanos y aparentemente violar ciertas leyes de la física, como superar la velocidad de la luz.
 ~~~
 - Commit message: Create historia.flash.md (default)
 - Commit new file
@@ -1675,6 +1786,7 @@ Related links:
 ---
 
 ## 9 GITHUB - ADVANCED
+[Index](#index)
 
 ### 9.1 Fork - Clone - Collaborations
 
@@ -1699,6 +1811,7 @@ In the third case, whenever we have done some changes in our forked-repo that we
 ---
 
 ### 9.2 Forking - Cloning 
+[Index](#index)
 
 ***Forking another repo***
 
@@ -1745,6 +1858,7 @@ We can delete something in a file:
 ---
 
 ### 9.3 Pull Request 
+[Index](#index)
 
 To Do: Cloned-repo -> push -> Forked-repo -> PR -> original-repo  
 
@@ -1848,6 +1962,7 @@ We will receive a message, and also the contributors.
 ---
 
 ### 9.4 Updating our forked-repo
+[Index](#index)
 
 ***Theory*** 
 
@@ -1921,6 +2036,7 @@ Then, considering a rebase:
 ---
 
 ### 9.5 Workflow introduction (master-feature)
+[Index](#index)
 
 Considering a scenario like this:
 
@@ -1945,6 +2061,7 @@ And then: pull request
 ---
 
 ### 9.6 Task: Create a new repo and a Tag
+[Index](#index)
 
 ***Task 1: Create a repo***
 
@@ -1996,6 +2113,7 @@ Releases -> Create a new release -> Choose the tag -> v0.0.1
 ---
 
 ### 9.7 Feature branch - Workflow via Pull Request
+[Index](#index)
 
 It's possible to invite other people to participate in our GitHub-repo.  
 Settings -> Access: Collaborators  
@@ -2077,6 +2195,7 @@ But, in Local the branch is still there, so we should:
 ---
 
 ### 9.8 Feature branch - Reviewing partners' job
+[Index](#index)
 
 ***Worker A: Changes GitHub-repo***
 
@@ -2171,6 +2290,7 @@ Unused branches should be deleted, see how many we have:
 ---
 
 ### 9.9 Delete unused branches
+[Index](#index)
 
 While we work we'll have many branches we won't use anymore.  
 In this case, 'br-misiones' wasn't even ours, it's a partner's branch.  
@@ -2209,6 +2329,7 @@ In cases like this we have to run this command:
 ---
 
 ### 9.10 Production branch
+[Index](#index)
 
 Together with 'master' branch, usually some other branches are kept.  
 Maybe they're considered historical, stable, or similar. They are still used, and still receiving maintenance.  
@@ -2252,6 +2373,7 @@ But, what about if I had deleted that branch in Local and the reference to the r
 ---
 
 ### 9.11 Recovering the production branch: br-kitkat
+[Index](#index)
 
 ***Recovering via Local***
 
@@ -2294,6 +2416,7 @@ Tags (combo-box) -> Find or create a branch: Write: br-kitkat
 ---
 
 ## 10 GITHUB ISSUES - MILESTONES - CONTRIBUTORS
+[Index](#index)
 
 Milestone .. something important we need to happen (hito), some features should be implemented, some bugs should be fixed
 It's a part of a project, helps us not to forget we're supposed to finish something.
@@ -2442,6 +2565,7 @@ Labels can be added to the Issue Templates too.
 ---
 
 ### 10.2 Milestone (hito)
+[Index](#index)
 
 [Ver GitHub Milestone](https://docs.github.com/en/issues)
 
@@ -2480,6 +2604,7 @@ There are two issues in this milestone.
 ---
 
 ### 10.3 Adding Contributors
+[Index](#index)
 
 Settings -> Collaboratos -> Confirm password  
 
@@ -2502,6 +2627,7 @@ It's possible to transfer the ownership of the repo to a contributor:
 ---
 
 ## 11 WIKIS - PROJECTS - GITHUB PAGES - INSIGHTS
+[Index](#index)
 
 ### 11.1 Wikis
 
@@ -2562,6 +2688,7 @@ To re-order the pages: click in 'Add a custom sidebar'.
 ---
 
 ### 11.2 Projects
+[Index](#index)
 
 Projects is like a whiteboard where we can classify items.
 - Tasks to do.
@@ -2622,6 +2749,7 @@ When we finish the 4 tasks we can close the issue. Automatically, the card will 
 ---
 
 ### 11.3 GitHub Pages - User and Repo
+[Index](#index)
 
 Free Hosting: GitHub Pages is useful to deploy a website in GitHub.  
 - It serves files: .html, .css, .js, .md. 
@@ -2717,6 +2845,7 @@ Notice that the webpage uses HTTPS, it has its own Certificate.
 ---
 
 ### 11.4 Insights
+[Index](#index)
 
 Statistical information about the activity in the repo 'avengers-test': 
 
@@ -2737,6 +2866,7 @@ There is not much info in the previous repo because it's new. But, if we go to r
 ---
 
 ## 12 ORGANIZATIONS - TEAMS
+[Index](#index)
 
 ### 12.1 Organizations
 
@@ -2788,6 +2918,7 @@ Being in the main-user -> repo: avengers-test -> Settings -> Transfer ownership
 ---
 
 ### 12.2 Teams
+[Index](#index)
 
 ***a) Teams and repos***
 
@@ -2839,6 +2970,7 @@ Tab: People
 ---
 
 ## 13 GIST
+[Index](#index)
 
 ***a) About Gist***
 
@@ -2875,7 +3007,7 @@ New gist
 ---
 
 ### 13.1 Gist plugins - Personal tokens
-
+[Index](#index)
 
 ![gist-2](images/gist-2.png)
 
@@ -2910,6 +3042,7 @@ It's possible to create Gists from IntelliJ.
 ---
 
 ### 13.2 All Gists
+[Index](#index)
 
 GitHub Gist -> All Gists -> This is the worldwide repo for gists.  
 
@@ -2919,6 +3052,7 @@ GitHub Gist -> All Gists -> This is the worldwide repo for gists.
 ---
 
 ## 14 SSH
+[Index](#index)
 
 Local
 ~~~
