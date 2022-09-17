@@ -1,4 +1,85 @@
+# INDEX
+
+[1. PROJECT CONFIGURATION AND BASIC COMMANDS](#1-project-configuration-and-basic-commands)<br>
+- [1.1 Local-repo and Remote-repo](#11-local-repo-and-remote-repo) //
+[1.2 Project creation](#12-project-creation) //
+[1.3 Initial Commands](#13-initial-commands) //
+[1.4 Course project](#14-course-project)
+
+[2. ADVANCED COMMANDS](#2-advanced-commands)<br>
+- [2.1 Diff and Amend](#21-module-02-instalaciones---diff-and-amend) //
+[2.2 Time travel, reset and reflog](#22-module-03-heroes---time-travel-reset-and-reflog) //
+[2.3 Change name and delete files 'with' git](#23-module-03-heroes---change-name-and-delete-files-with-git) //
+[2.4 Change name and delete files 'without' git](#24-module-03-heroes---change-name-and-delete-files-without-git) //
+[2.5 Ignoring files](#25-ignoring-files)
+
+[3. BRANCHES & MERGE](#3-branches--merge)<br>
+- [3.1 Fast-forward merge](#31-project-04-merge---fast-forward-merge) //
+[3.2 Automatic merge](#32-project-04-merge---automatic-merge) //
+[3.3 Manual merge (conflicts)](#33-project-04-merge---manual-merge-conflicts)
+
+[4. TAGS](#4-tags)
+
+[5. GIT STASH - TEMPORAL STORAGE](#5-git-stash---temporal-storage)<br>
+- [5.1 Stash](#51-stash) //
+[5.2 Stash Avanzado](#52-stash-avanzado)
+
+[6. GIT REBASE - EMERGENCY CHANGES](#6-git-rebase---emergency-changes)<br>
+- [6.1 Normal Rebase - Updating a branch](#61-normal-rebase---updating-a-branch) //
+[6.2 Rebase Squash - Meld commits](#62-rebase-squash---meld-commits) //
+[6.3 Rebase Reword](#63-rebase-reword) //
+[6.4 Rebase Edit](#64-rebase-edit)
+
+[7. GITHUB: GIT REMOTE, PUSH, PULL](#7-github-git-remote-push-pull)<br>
+- [7.1 GitHub - Push](#71-github---push) //
+[7.2 New remote repo](#72-new-remote-repo) //
+[7.3 Pushing tags from our local-repo](#73-pushing-tags-from-our-local-repo) //
+[7.4 Pull the last changes of the remote-repo](#74-pull-the-last-changes-of-the-remote-repo) //
+[7.5 Cloning a remote-repo](#75-cloning-a-remote-repo) //
+[7.6 Pushing changes to remote-repo](#76-pushing-changes-to-remote-repo)
+
+[8 GITHUB - BASIC](#8-github---basic)
+
+[9 GITHUB - ADVANCED](#9-github---advanced)<br>
+- [9.1 Fork - Clone - Collaborations](#91-fork---clone---collaborations) //
+[9.2 Forking - Cloning](#92-forking---cloning) //
+[9.3 Pull Request](#93-pull-request) //
+[9.4 Updating our forked-repo](#94-updating-our-forked-repo) //
+[9.5 Workflow introduction (master-feature)](#95-workflow-introduction-master-feature) //
+[9.6 Task: Create a new repo and a Tag](#96-task-create-a-new-repo-and-a-tag) //
+[9.7 Feature branch - Workflow via Pull Request](#97-feature-branch---workflow-via-pull-request) //
+[9.8 Feature branch - Reviewing partners' job](#98-feature-branch---reviewing-partners-job) //
+[9.9 Delete unused branches](#99-delete-unused-branches) //
+[9.10 Production branch](#910-production-branch) //
+[9.11 Recovering the production branch: br-kitkat](#911-recovering-the-production-branch-br-kitkat) //
+
+[10 GITHUB ISSUES - MILESTONES - CONTRIBUTORS](#10-github-issues---milestones---contributors)<br>
+- [10.1 Issues](#101-issues) //
+[10.2 Milestone (hito)](#102-milestone-hito) //
+[10.3 Adding Contributors](#103-adding-contributors)
+
+[11 WIKIS - PROJECTS - GITHUB PAGES - INSIGHTS](#11-wikis---projects---github-pages---insights)<br>
+- [11.1 Wikis](#111-wikis) //
+[11.2 Projects](#112-projects) //
+[11.3 GitHub Pages - User and Repo](#113-github-pages---user-and-repo) //
+[11.4 Insights](#114-insights)
+
+[12 ORGANIZATIONS - TEAMS](#12-organizations---teams)<br>
+- [12.1 Organizations](#121-organizations) //
+[12.2 Teams](#122-teams)
+
+[13 GIST](#13-gist)<br>
+- [13.1 Gist plugins - Personal tokens](#131-gist-plugins---personal-tokens) //
+[13.2 All Gists](#132-all-gists)
+
+[14 SSH](#14-ssh) 
+
+
+
+---
+
 ## 1. PROJECT CONFIGURATION AND BASIC COMMANDS
+[Index](#index)
 
 For this course it's necessary to have git version 2.10+
 
@@ -10,9 +91,9 @@ For this course it's necessary to have git version 2.10+
   - Add a README file
   - Licence: GNU GLP v3
 - In the file 'pry-git' open GitBash:
-  - `git init` .. Local-repo creation.
+  - `git init` .. Local-repo creation
   - `git remote add origin https://github.com/freddy-alexis-ht/JavaFX.git` .. Repos linking
-  - `git pull origin master` .. Branches sync.
+  - `git pull origin master` .. master-branches sync.
 
 
 It's possible that on execution of `git init` a message is shown recommending us to change the default branch from 'master' to 'main'.
@@ -26,6 +107,7 @@ If the branch is already created, the name can be changed with:
 ---
 
 ### 1.2 Project creation
+[Index](#index)
 
 - Open IntelliJ -> New project -> Java: 1.8
   - Project name: pry-git
@@ -34,6 +116,7 @@ If the branch is already created, the name can be changed with:
 ---
 
 ### 1.3 Initial Commands
+[Index](#index)
 
 `git --version`
 
@@ -43,8 +126,8 @@ If the branch is already created, the name can be changed with:
 `:` .. at the end of the page.  
 `:q` .. 'quit', leave what we're checking.
 
-When working on a local-repo, the email won't be validated. Every commit will have that email.  
-To have a remote-repo in GitHub, Bitbucket or other, to register there we'll need an email that will be validated.  
+When working on a local-repo, the email entered won't be validated. Every commit will have that email, even it it's not correct.  
+To have a remote-repo in GitHub, Bitbucket or other, to sign up we'll need an email that will be validated.  
 It's recommendable that the email set in the local-repo is the same set in the remote-repo, for sync.
 
 `git --help config`  
@@ -63,6 +146,7 @@ To edit the configuration:
 ---
 
 ### 1.4 Course project
+[Index](#index)
 
 - The project '01-bases' is given in the course:
 - New module -> Name: 01-bases -> paste the files here
@@ -83,7 +167,7 @@ To edit the configuration:
 
 ***b) Recovering a previous commit***
 
-`git checkout -- .` .. reconstruct the project as it is in the last commit.  
+`git checkout -- .` .. reconstruct the project as it is in the last commit. It affects only 'un-staged' changes.  
 Remember that it only cares about the tracked files.  
 If a file was created, this command wouldn't erase it, because it would be in 'untracked' state.
 
@@ -91,7 +175,7 @@ If a file was created, this command wouldn't erase it, because it would be in 'u
 
 ***c) Change branch name: main -> master***
 
-`git branch` .. display the branches.
+`git branch` .. display all the local branches.
 It's better to work in other branches, not in 'master'.
 
 `git branch -m master main` .. change the branch name from 'master' to 'main'.
@@ -117,7 +201,7 @@ It only works if the file or files are already being tracked.
 
 `git log`  
 Hash .. commit unique identifier.  
-HEAD -> main .. the last commit was made in branch 'main'.  
+HEAD -> master .. the last commit that was made in branch 'master'.  
 Author .. user configuration.
 
 ---
@@ -160,6 +244,7 @@ As the alias were set in global mode, it affects all repos.
 ---
 
 ## 2. ADVANCED COMMANDS
+[Index](#index)
 
 ### 2.1 Module '02-instalaciones' - diff and amend
 
@@ -184,32 +269,41 @@ Doing this in the Console can be confusing. It's better to use an IDE.
 
 ---
 
-***b) Update commit messages***
+***b) Update last commit message***
+
+Only for the last commit, and if it exists only in Local.
+For older commits, 'rebase' should be used.
 
 Commit with a mistaken message:  
 `git commit -m "incorrect message`
 
-Rewriting the commit message:  
-`git commit --amend -m "correct message`
+Rewriting the last commit message:  
+`git commit --amend -m "correct message"`
 
-It can be checked with:
-`git log`
+To go to the editor and modify the commit message  
+`git commit --amend`
+
+It can be checked with: `git log`
 
 ---
 
 ***c) Revert commit***
 
-If after commit we feel we'd want to add some other changes to that previous commit:  
+If after a commit we feel we still want to add some other changes, the commit can be reverted.  
+The last commit will be deleted, but our changes will remain 'staged'. In other words, no fear.
+
 `git reset --soft HEAD^` .. 'HEAD^' is equivalent to 'HEAD^1', es un commit antes del HEAD (last one).  
 If it's need to go to other previous commits: HEAD^2, HEAD^3, but it's not recommendable to go to far.
 
 Check the logs wit 'git log'.
 
 Then add the changes with 'git add .' and write the correct commit.  
-`git commit -m "another correct message`
+`git commit -m "another correct message"`
 
 ---
+
 ### 2.2 Module '03-heroes' - Time travel, reset and reflog
+[Index](#index)
 
 ***a) Working with the project***
 
@@ -222,10 +316,10 @@ Take into consideration the folders hierarchy in the git commands.
 
 - The files will be added and committed one by one.
   - Add the README.md: message: README added
-  - Add the README.md: message: misiones added
-  - Add the README.md: message: heroes added
-  - Add the README.md: message: ciudades added
-  - Add the README.md: message: historia folder added
+  - Add the misiones.md: message: misiones added
+  - Add the heroes.md: message: heroes added
+  - Add the ciudades.md: message: ciudades added
+  - Add the historia.md: message: historia folder added
 
 At this point, we notice that 'historia' folder has two files in it.  
 `git commit --amend` .. displays info about the last commit.
@@ -234,7 +328,7 @@ At this point, we notice that 'historia' folder has two files in it.
 
 ![amend](images/amend.png)
 
-- To change the *commit-message*:
+To change the *commit-message*:
 - Click 'A' to edit -> Edit -> Esc -> :wq!
 
 ![amend-2](images/amend-2.png)
@@ -265,7 +359,7 @@ or, using the hash:
 
 In 'heroes.md' write: * Robin  
 On `git status`  
-.. there'll be two M's (modified)
+.. there'll be two M's (M:modified / green and red)
 - Green M: the 'git add' command about 'Linterna verde' entry.
 - Red M: the unstaged modification about 'Robin' entry.
 
@@ -287,7 +381,7 @@ Check with: `git log`
 
 ![modification-2](images/modification-2.png)
 
-- For some reason it's necessary to go back to the commit 'ciudades added' (hash: bacc4ca)  
+For some reason it's necessary to go back to the commit 'ciudades added' (hash: bacc4ca)  
   `git reset --mixed 2533abc`  (default: --mixed)
 
 - Files are still there, but changes are unstaged. ('commit' and 'add' reverted)
@@ -306,7 +400,8 @@ Note that even when the commit related to 'historia' folder has been reset, it's
 
 ***d) Reverting the reset***
 
-We realized that the commits were ok, and we want to undo all the resets (soft, mixed, hard), we want to go back to were 'Linterna verde' and 'Robin' were added (hash: ea4bf49).    
+We realized that the deleted commits were ok, and we want to undo all the resets (soft, mixed, hard).  
+We want to go back to were 'Linterna verde' and 'Robin' were added (hash: ea4bf49).    
 Each 'hash' represents modifications in the history of logs.
 
 `git reflog`
@@ -331,12 +426,13 @@ Each 'hash' represents modifications in the history of logs.
 ---
 
 ### 2.3 Module '03-heroes' - change name and delete files with git
+[Index](#index)
 
 ***a) Renaming***
 
 In '03-heroes/src/' create the file 'destroy.md' and add some text.
 - This file contains info to destroy the world.  
-  `git add 03-heroes/src/destroy.md`
+  `git add 03-heroes/src/destroy.md`  
   `git commit -m "destroy.md added"`  
   `git log`
 
@@ -351,7 +447,7 @@ If I want to keep the commit in the logs, and I want to change the file name and
 `git mv 03-heroes/src/destroy.md 03-heroes/src/save.md`
 
 The file-name now is 'save.md'. It can be seen with:
-
+test
 `git status`
 
 ![rename](images/rename.png)
@@ -367,7 +463,7 @@ We have what we wanted, everything in the logs.
 `git rm 03-heroes/src/save.md`  
 When the file is deleted, it's still in the stage (to be committed).
 - It can be brought back with:  
-  `git reset --hard` .. but it's better to use:  
+  `git reset --hard`  
   `git checkout -- .`
 
 ![delete](images/delete.png)
@@ -387,6 +483,7 @@ We have what we wanted, everything in the logs.
 ---
 
 ### 2.4 Module '03-heroes' - change name and delete files without git
+[Index](#index)
 
 ***a) Renaming***
 
@@ -437,6 +534,7 @@ Differences:
 ---
 
 ### 2.5 Ignoring files
+[Index](#index)
 
 Create some files that we don't want to be tracked.  
 `git status`  
@@ -453,6 +551,7 @@ The first one is for directories, and the next one for files.
 ---
 
 ## 3. BRANCHES & MERGE
+[Index](#index)
 
 ***a) Merge types***
 
@@ -466,6 +565,7 @@ The first one is for directories, and the next one for files.
 ---
 
 ### 3.1 Project '04-merge' - Fast-forward merge
+[Index](#index)
 
 ***a) Project***
 
@@ -542,6 +642,7 @@ If we don't mind about those changes, to force the deletion we can use:
 ---
 
 ### 3.2 Project '04-merge' - Automatic merge
+[Index](#index)
 
 To create a branch and to move to it:  
 `git branch br-villanos`  
@@ -623,6 +724,7 @@ It will display:
 ---
 
 ### 3.3 Project '04-merge' - Manual merge (conflicts)  
+[Index](#index)
 
 Both branches modified the same file.
 
@@ -663,6 +765,7 @@ Delete the other branch.
 ---
 
 ## 4. TAGS
+[Index](#index)
 
 Reference to a specific commit and to the state of a project in a period of time.  
 
@@ -702,6 +805,7 @@ Tag description:
 ---
 
 ## 5. GIT STASH - TEMPORAL STORAGE
+[Index](#index)
 
 ***Stash***  
 It's like a vault where we can put files, even those untracked by git.  
@@ -710,7 +814,7 @@ Scenario:
 - We're working on a branch, it can be 'master' or other branch.  
 - We're asked to go to the last commit, but we don't want to commit the changes we have so far.
 - We save those un-committed changes with Stash.
-- We go to the last commit and do what we have to, then we can recovery our progress.  
+- We go to the last commit and do what we have to, then we can recovery our progress from the stash.  
 
 This action can cause scenarios just like the ones we saw with 'merge'.  
 **Tip:** It's better to save only one stash and attend to it as soon as possible. Having many stashes can be confusing.  
@@ -722,6 +826,7 @@ It allows to join/split commits, to rename commits, ...
 ---
 
 ### 5.1 Stash   
+[Index](#index)
 
 This project will be used for this part:  
 
@@ -795,7 +900,7 @@ Obviously, we know that changes were made in different locations, so there shoul
 Recoveries our changes.  
 Keeps the last commit.  
 
-In the image, we can see that 'git stash' displays a similar message as with 'git status'.  
+In the image, we can see that 'git stash pop' displays a similar message as with 'git status'.  
 We also can see that the 'stash@{0}' was dropped. Meaning that, if we'd have had 2 stashes: 'stash@{0}', 'stash@{1}', the first one was dropped, and 'stash@{1}' now is 'stash@{0}' (the only stash that exists).    
 
 ![stash-3](images/stash-3.png)
@@ -913,6 +1018,7 @@ Remember the stash wasn't dropped.
 ---
 
 ### 5.2 Stash Avanzado  
+[Index](#index)
 
 `git stash clear` .. removes all the stashes.  
 - They can be recovered with 'git reflog'.  
@@ -973,6 +1079,7 @@ So far I have 4 stashes, let's say I decided to keep only the last one.
 ---
 
 ## 6. GIT REBASE - EMERGENCY CHANGES
+[Index](#index)
 
 ***Simple Rebase***  
 
@@ -998,6 +1105,7 @@ It moves the last 3 commits to a Temporal-Area, and later they are put back in t
 ---
 
 ### 6.1 Normal Rebase - Updating a branch
+[Index](#index)
 
 In this part this project will be used:  
 
@@ -1052,6 +1160,7 @@ The branch 'rama-misiones-completadas' can be deleted.
 ---
 
 ### 6.2 Rebase Squash - Meld commits
+[Index](#index)
 
 Being in 'master'.  
 There are two files: misiones.md & misiones-completadas.md  
@@ -1171,6 +1280,7 @@ s c731cc5 Actualizamos misiones completadas
 ---
 
 ### 6.3 Rebase Reword
+[Index](#index)
 
 `git rebase -i HEAD~4`  
 
@@ -1220,7 +1330,8 @@ Check the logs:
 
 ---
 
-### 6.3 Rebase Edit
+### 6.4 Rebase Edit
+[Index](#index)
 
 Modify the files: README.md, misiones.md, villanos.md.  
 Then, we decide to revert what was done in README.md.  
@@ -1254,6 +1365,9 @@ edit da8e603 commits
 Esc -> :wq!  
 Then, we're back.  
 
+`git status`  
+`git reset HEAD^`  
+
 ![edit-3](images/edit-3.png)
 
 In this point, we're right before we 'add' the changes in the two files.  
@@ -1278,15 +1392,16 @@ There are no more tasks, so this will end the 'interactive rebase'.
 ---
 
 ## 7. GITHUB: GIT REMOTE, PUSH, PULL
+[Index](#index)
 
-Have in mind that Git doesn't manage access control to the repo.  
-- For this task we have some 'hosted services' like: GitHub, Bitbucket, ...
-- And, managed by ourselves like: Gitosis.  
+- Have in mind that Git doesn't manage access control to the repo. For this task we have some 'hosted services' like: 
+  - GitHub, Bitbucket, ...
+- And, managed by ourselves like: 
   - Gitosis is a tool which provides access control and remote management for hosted Git repositories. It allows for fine-grained management of read and write access over SSH, without requiring that the users have local system accounts on the server.  
 
 Gitosis oficial links:
 - [What is Gitosis?](https://wiki.archlinux.org/title/gitosis#:~:text=Gitosis%20is%20a%20tool%20which,system%20accounts%20on%20the%20server.)
-- [Instal and configure](https://github.com/res0nat0r/gitosis)
+- [Install and configure](https://github.com/res0nat0r/gitosis)
 
 Useful link:
 - [Save user and pass of GitHub](https://docs.github.com/es/get-started/getting-started-with-git/caching-your-github-credentials-in-git#platform-windows)
@@ -1294,6 +1409,7 @@ Useful link:
 ---
 
 ### 7.1 GitHub - Push
+[Index](#index)
 
 'origin' is the name of the repo, it's a convention.  
 `git remote add origin [URL]`  
@@ -1310,13 +1426,14 @@ origin  https://github.com/freddy-alexis-ht/Git-GitHub.git (push)
 ~~~
 
 `git push -u origin master`  
-'origin' is the name of te remote repo.  
+'origin' is the name of the remote repo.  
 'master' is the local branch we want to push.  
 '-u' sets 'master' by default, so in the next time it will be enough 'git push'.  
 
 ---
 
 ### 7.2 New remote repo
+[Index](#index)
 
 ***Local repo***
 
@@ -1324,7 +1441,7 @@ origin  https://github.com/freddy-alexis-ht/Git-GitHub.git (push)
 
 ***Remote repo***
 
-GitHub -> New repo -> Name: git-course -> Public
+GitHub -> New repo -> Name: git-course -> Public  
 Copy the URL: https://github.com/freddy-alexis-ht/git-course.git  
 
 On GitBash, run the commands:  
@@ -1336,6 +1453,7 @@ On GitBash, run the commands:
 ---
 
 ### 7.3 Pushing tags from our local-repo
+[Index](#index)
 
 ***a) Tags***
 
@@ -1401,6 +1519,7 @@ And, in the main-page of the remote-repo, the Release will be there.
 ---
 
 ### 7.4 Pull the last changes of the remote-repo
+[Index](#index)
 
 It's possible to edit a file in GitHub.  
 - README.md -> Edit
@@ -1432,6 +1551,7 @@ As we can see in the image, it applied the 'fast-forward' because there were no 
 ---
 
 ### 7.5 Cloning a remote-repo
+[Index](#index)
 
 Delete the project '09-heroes' .. this is to simulate that we lose our work.  
 There's no problem, because it's in GitHub.  
@@ -1446,6 +1566,7 @@ Note the repo is cloned with the name as it's in the remote: git-course.
 ---
 
 ### 7.6 Pushing changes to remote-repo
+[Index](#index)
 
 `git status`  
 `git add .`  
@@ -1455,7 +1576,7 @@ With 'git lg' we can see that the local-repo is 1 commit ahead the origin (remot
 
 `git push`
 
-***Conflict***
+***Generating a conflict***
 
 In remote-repo edit README.md and commit.   
 In local-repo edit README.md and commit.   
@@ -1494,6 +1615,7 @@ git config --global pull.rebase true
 ---
 
 ## 8 GITHUB - BASIC
+[Index](#index)
 
 ***a) GitHub Interface***
 
@@ -1548,10 +1670,10 @@ When clicking on that particular file, there are three other options:
 
 ***e) Create a new file in GitHub***
 
-Pull request: If we want to merge the branch-A with master, a pull-request will be useful to analyze the changes, this will be done by someone with higher skills.  
+Pull request: If we want to merge the branch-A with master. A pull-request will be useful to analyze the changes, this will be done by someone with higher skills.  
 This is usually done from the local-repo, but it's possible from the remote-repo too.
 
-- GitHub -> 'historia' folder -> Add file: Create new file -> batman.md (copy and paste text)  
+- GitHub -> 'historia' folder -> Add file: Create new file -> batman.md (add some text)  
 - Commit message: batman.md created
 - Create a new branch for this commit and start a pull request.
   - Branch-name: branch-patch-batman
@@ -1568,7 +1690,7 @@ Clicking in 'Merge pull request' will accept the proposed changes and commit.
 
 ![pull-request-2](images/pull-request-2.png)
 
-But, in the lowe part, by clicking in 'Close with comment' we can discard that pull request.  
+But, in the lower part, by clicking in 'Close with comment' we can discard that pull request.  
 Also, we can start a debate about if the commit is convenient or not, it's possible to mention other people to include them in the debate.  
 
 ![pull-request-3](images/pull-request-3.png)
@@ -1590,6 +1712,9 @@ Finally, we can check the changes in the repo.
 In the end, to have this changes in the local-repo:  
 `git remote update`  
 `git status -uno`  
+or  
+`git fetch`  
+then  
 `git pull`  
 `git lg`  
 
@@ -1607,7 +1732,7 @@ In GitHub -> master-branch -> Location: git-course/historia/
 ~~~
 ## Historia de Flash
 
-Flash (conocido también como The Flash y traducido en español: Destello) es el nombre de varios superhéroes ficticios que aparecen en los cómics estadounidenses publicados por DC Comics. Creado por el escritor Gardner Fox y el artista Harry Lampert, el "Flash" original apareció por primera vez en Flash Comics #1 (fecha de portada de enero de 1940 / mes de noviembre de 1939).1​ Apodado el "Corredor Escarlata", todas las encarnaciones del Flash poseen "súper velocidad", que incluye la capacidad de correr, moverse y pensar extremadamente rápido, también puede atravesar la materia sólida, usar reflejos sobrehumanos y aparentemente violar ciertas leyes de la física, como superar la velocidad de la luz.
+Flash (conocido también como The Flash y traducido en español: Destello) es el nombre de varios superhéroes ficticios que aparecen en los cómics estadounidenses publicados por DC Comics. Creado por el escritor Gardner Fox y el artista Harry Lampert, el "Flash" original apareció por primera vez en Flash Comics #1 (fecha de portada de enero de 1940 / mes de noviembre de 1939). Apodado el "Corredor Escarlata", todas las encarnaciones del Flash poseen "súper velocidad", que incluye la capacidad de correr, moverse y pensar extremadamente rápido, también puede atravesar la materia sólida, usar reflejos sobrehumanos y aparentemente violar ciertas leyes de la física, como superar la velocidad de la luz.
 ~~~
 - Commit message: Create historia.flash.md (default)
 - Commit new file
@@ -1631,7 +1756,7 @@ Then, for some reason we have to delete 'flash.md'.
 --> Checking the commits
 
 - In the repo -> click in the commits -> there we can see all the commits run in the remote-repo.
-  - But, it's like if nothing would've happened because we create a file and then delete it.
+  - But, it's like if nothing would've happened because we created a file and then delete it.
 
 ![fetch-1](images/fetch-1.png)
 
@@ -1642,7 +1767,7 @@ However, if we go to our local-repo, we cannot see those commits.
 
 ![fetch-2](images/fetch-2.png)
 
-If we don't want to do a 'pull, merge or anything' we just want to update the repos.
+If we don't want to do a 'pull, merge or anything' we just want to update the repos.  
 `git fetch`  
 `git lg`  
 
@@ -1675,6 +1800,7 @@ Related links:
 ---
 
 ## 9 GITHUB - ADVANCED
+[Index](#index)
 
 ### 9.1 Fork - Clone - Collaborations
 
@@ -1688,7 +1814,7 @@ Case 2: Non-collaborator
   
 Case 3: Forking the repo
 - In case we want to be collaborators in a remote-repo, maybe we have good ideas, or we found some errors that we know how to solve.  
-- Considering this remote-repo as public in GitHub, we can do a 'for':
+- Considering this remote-repo as public in GitHub, we can do a 'fork':
   - google/maps -> fork -> mi_usuario/maps (here we'll have total access)
 
 In the third case, whenever we have done some changes in our forked-repo that we want to show to the original owners, we have to do a 'pull request'.
@@ -1699,6 +1825,7 @@ In the third case, whenever we have done some changes in our forked-repo that we
 ---
 
 ### 9.2 Forking - Cloning 
+[Index](#index)
 
 ***Forking another repo***
 
@@ -1731,7 +1858,7 @@ From GitBash:
 `cd [project-location]`  
 
 It's possible to execute commands like:  
-`git lg`
+`git lg`  
 `git remote -v`  
 ~~~
 origin  https://github.com/freddy-alexis-ht/legion-del-mal.git (fetch)
@@ -1745,6 +1872,7 @@ We can delete something in a file:
 ---
 
 ### 9.3 Pull Request 
+[Index](#index)
 
 To Do: Cloned-repo -> push -> Forked-repo -> PR -> original-repo  
 
@@ -1813,9 +1941,9 @@ Maybe the admin doesn't want that 'miembros.md' change.
 `git lg` to see where we did the action the admin requests us to change.  
 In the previous commit, copy the hash.  
 
-`git checkout [hash] miembros.md` to undo the changes in that file.  
+`git checkout [hash] miembros.md` .. to undo the changes in that file.  
 `git add .`   
-`git commit -m "miembros.md changes reverted"` 
+`git commit -m "miembros.md changes reverted"`   
 `git push`  
 
 **In our forked-repo (remote)**  
@@ -1848,6 +1976,7 @@ We will receive a message, and also the contributors.
 ---
 
 ### 9.4 Updating our forked-repo
+[Index](#index)
 
 ***Theory*** 
 
@@ -1859,7 +1988,7 @@ In the image, what I have called before as 'original-repo' it's usually called '
 So, we'll have two remote-repos: origin and upstream.
 
 `git remote add upstream <original-repo>` .. to add the original repo.  
-`git fetch upstream` .. to sync the upstream and the local.
+`git fetch upstream` .. to sync the upstream and the local.  
 `git pull` .. and then again the cyle: git push -> pull request
 
 ![upstream-1](images/upstream-1.png)
@@ -1912,8 +2041,8 @@ So if we want to fetch from the upstream the command has to be:
 
 Depending on the situation, the pull can turn into a: fast-forward or rebase  
 Then, considering a rebase:  
-`git commit -am "local updated from upstream"`  (to merge the changes in our local)
-`git rebase --continue`  (mark the conflict as solved)
+`git commit -am "local updated from upstream"`  (to merge the changes in our local)  
+`git rebase --continue`  (mark the conflict as solved)  
 `git lg`  
 `git commit -am "README updated from Fork"`  
 `git push`  
@@ -1921,6 +2050,7 @@ Then, considering a rebase:
 ---
 
 ### 9.5 Workflow introduction (master-feature)
+[Index](#index)
 
 Considering a scenario like this:
 
@@ -1929,8 +2059,8 @@ Considering a scenario like this:
 When working on groups, usually every developer creates a feature-branch, in this case from the master.  
 
 Considering we have all branches in local, we can check other people's progress:  
-`git fetch`  .. to sync our branch
-`git branch -a`  .. to list all branches
+`git fetch`  .. to sync our branch  
+`git branch -a`  .. to list all branches  
 `git checkout rama-x`  .. to go to rama-x
 
 To merge changes to master and push them to the remote-repo:  
@@ -1945,6 +2075,7 @@ And then: pull request
 ---
 
 ### 9.6 Task: Create a new repo and a Tag
+[Index](#index)
 
 ***Task 1: Create a repo***
 
@@ -1996,6 +2127,7 @@ Releases -> Create a new release -> Choose the tag -> v0.0.1
 ---
 
 ### 9.7 Feature branch - Workflow via Pull Request
+[Index](#index)
 
 It's possible to invite other people to participate in our GitHub-repo.  
 Settings -> Access: Collaborators  
@@ -2077,12 +2209,13 @@ But, in Local the branch is still there, so we should:
 ---
 
 ### 9.8 Feature branch - Reviewing partners' job
+[Index](#index)
 
 ***Worker A: Changes GitHub-repo***
 
 GitHub-repo: avengers-test -> branch: master  
 It's possible to create a branch in the interface.  
-br-misiones .. it'll b used by my team to create 'missions'.  
+br-misiones .. it'll be used by my team to create 'missions'.  
 If the branch doesn't exist, GitHub creates it, and take us to it.  
 - New File -> misiones.md -> Add some text.
 - Commit message: Create misiones.md   (default)
@@ -2129,7 +2262,7 @@ Now, that branch is visible:
 ~~~
 
 Because of this change, in IntelliJ we have that branch set: worker-A's branch  
-For some reason (i.e. vacation), worker-A is not present, so we add a line to 'misiones.md', because it was necessary:  
+Let's say that, for some reason (i.e. vacation) worker-A is not present, so we add a line to 'misiones.md', because it was necessary:  
 ~~~
 ### Missions
 
@@ -2171,6 +2304,7 @@ Unused branches should be deleted, see how many we have:
 ---
 
 ### 9.9 Delete unused branches
+[Index](#index)
 
 While we work we'll have many branches we won't use anymore.  
 In this case, 'br-misiones' wasn't even ours, it's a partner's branch.  
@@ -2209,6 +2343,7 @@ In cases like this we have to run this command:
 ---
 
 ### 9.10 Production branch
+[Index](#index)
 
 Together with 'master' branch, usually some other branches are kept.  
 Maybe they're considered historical, stable, or similar. They are still used, and still receiving maintenance.  
@@ -2252,6 +2387,7 @@ But, what about if I had deleted that branch in Local and the reference to the r
 ---
 
 ### 9.11 Recovering the production branch: br-kitkat
+[Index](#index)
 
 ***Recovering via Local***
 
@@ -2294,6 +2430,7 @@ Tags (combo-box) -> Find or create a branch: Write: br-kitkat
 ---
 
 ## 10 GITHUB ISSUES - MILESTONES - CONTRIBUTORS
+[Index](#index)
 
 Milestone .. something important we need to happen (hito), some features should be implemented, some bugs should be fixed
 It's a part of a project, helps us not to forget we're supposed to finish something.
@@ -2442,6 +2579,7 @@ Labels can be added to the Issue Templates too.
 ---
 
 ### 10.2 Milestone (hito)
+[Index](#index)
 
 [Ver GitHub Milestone](https://docs.github.com/en/issues)
 
@@ -2480,6 +2618,7 @@ There are two issues in this milestone.
 ---
 
 ### 10.3 Adding Contributors
+[Index](#index)
 
 Settings -> Collaboratos -> Confirm password  
 
@@ -2502,6 +2641,7 @@ It's possible to transfer the ownership of the repo to a contributor:
 ---
 
 ## 11 WIKIS - PROJECTS - GITHUB PAGES - INSIGHTS
+[Index](#index)
 
 ### 11.1 Wikis
 
@@ -2562,6 +2702,7 @@ To re-order the pages: click in 'Add a custom sidebar'.
 ---
 
 ### 11.2 Projects
+[Index](#index)
 
 Projects is like a whiteboard where we can classify items.
 - Tasks to do.
@@ -2622,6 +2763,7 @@ When we finish the 4 tasks we can close the issue. Automatically, the card will 
 ---
 
 ### 11.3 GitHub Pages - User and Repo
+[Index](#index)
 
 Free Hosting: GitHub Pages is useful to deploy a website in GitHub.  
 - It serves files: .html, .css, .js, .md. 
@@ -2717,6 +2859,7 @@ Notice that the webpage uses HTTPS, it has its own Certificate.
 ---
 
 ### 11.4 Insights
+[Index](#index)
 
 Statistical information about the activity in the repo 'avengers-test': 
 
@@ -2737,6 +2880,7 @@ There is not much info in the previous repo because it's new. But, if we go to r
 ---
 
 ## 12 ORGANIZATIONS - TEAMS
+[Index](#index)
 
 ### 12.1 Organizations
 
@@ -2788,6 +2932,7 @@ Being in the main-user -> repo: avengers-test -> Settings -> Transfer ownership
 ---
 
 ### 12.2 Teams
+[Index](#index)
 
 ***a) Teams and repos***
 
@@ -2839,6 +2984,7 @@ Tab: People
 ---
 
 ## 13 GIST
+[Index](#index)
 
 ***a) About Gist***
 
@@ -2875,7 +3021,7 @@ New gist
 ---
 
 ### 13.1 Gist plugins - Personal tokens
-
+[Index](#index)
 
 ![gist-2](images/gist-2.png)
 
@@ -2910,6 +3056,7 @@ It's possible to create Gists from IntelliJ.
 ---
 
 ### 13.2 All Gists
+[Index](#index)
 
 GitHub Gist -> All Gists -> This is the worldwide repo for gists.  
 
@@ -2919,6 +3066,7 @@ GitHub Gist -> All Gists -> This is the worldwide repo for gists.
 ---
 
 ## 14 SSH
+[Index](#index)
 
 Local
 ~~~
