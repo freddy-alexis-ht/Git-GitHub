@@ -7,16 +7,16 @@
 [1.4 Course project](#14-course-project)
 
 [2. ADVANCED COMMANDS](#2-advanced-commands)<br>
-- [2.1 Module '02-instalaciones' - diff and amend](#21-module-02-instalaciones---diff-and-amend) //
-[2.2 Module '03-heroes' - Time travel, reset and reflog](#22-module-03-heroes---time-travel-reset-and-reflog) //
-[2.3 Module '03-heroes' - change name and delete files with git](#23-module-03-heroes---change-name-and-delete-files-with-git) //
-[2.4 Module '03-heroes' - change name and delete files without git](#24-module-03-heroes---change-name-and-delete-files-without-git) //
+- [2.1 Diff and Amend](#21-module-02-instalaciones---diff-and-amend) //
+[2.2 Time travel, reset and reflog](#22-module-03-heroes---time-travel-reset-and-reflog) //
+[2.3 Change name and delete files 'with' git](#23-module-03-heroes---change-name-and-delete-files-with-git) //
+[2.4 Change name and delete files 'without' git](#24-module-03-heroes---change-name-and-delete-files-without-git) //
 [2.5 Ignoring files](#25-ignoring-files)
 
 [3. BRANCHES & MERGE](#3-branches--merge)<br>
-- [3.1 Project '04-merge' - Fast-forward merge](#31-project-04-merge---fast-forward-merge) //
-[3.2 Project '04-merge' - Automatic merge](#32-project-04-merge---automatic-merge) //
-[3.3 Project '04-merge' - Manual merge (conflicts)](#33-project-04-merge---manual-merge-conflicts)
+- [3.1 Fast-forward merge](#31-project-04-merge---fast-forward-merge) //
+[3.2 Automatic merge](#32-project-04-merge---automatic-merge) //
+[3.3 Manual merge (conflicts)](#33-project-04-merge---manual-merge-conflicts)
 
 [4. TAGS](#4-tags)
 
@@ -91,9 +91,9 @@ For this course it's necessary to have git version 2.10+
   - Add a README file
   - Licence: GNU GLP v3
 - In the file 'pry-git' open GitBash:
-  - `git init` .. Local-repo creation.
+  - `git init` .. Local-repo creation
   - `git remote add origin https://github.com/freddy-alexis-ht/JavaFX.git` .. Repos linking
-  - `git pull origin master` .. Branches sync.
+  - `git pull origin master` .. master-branches sync.
 
 
 It's possible that on execution of `git init` a message is shown recommending us to change the default branch from 'master' to 'main'.
@@ -126,8 +126,8 @@ If the branch is already created, the name can be changed with:
 `:` .. at the end of the page.  
 `:q` .. 'quit', leave what we're checking.
 
-When working on a local-repo, the email won't be validated. Every commit will have that email.  
-To have a remote-repo in GitHub, Bitbucket or other, to register there we'll need an email that will be validated.  
+When working on a local-repo, the email entered won't be validated. Every commit will have that email, even it it's not correct.  
+To have a remote-repo in GitHub, Bitbucket or other, to sign up we'll need an email that will be validated.  
 It's recommendable that the email set in the local-repo is the same set in the remote-repo, for sync.
 
 `git --help config`  
